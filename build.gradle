@@ -5,7 +5,7 @@ plugins {
     id "run.halo.plugin.devtools" version "0.0.7"
 }
 
-group 'run.halo.afdian'
+group 'run.halo.starter'
 sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     implementation platform('run.halo.tools.platform:plugin:2.11.0-SNAPSHOT')
-    implementation 'cn.hutool:hutool-all:5.8.20'
     compileOnly 'run.halo.app:api'
 
     testImplementation 'run.halo.app:api'

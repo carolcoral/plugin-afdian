@@ -3,5 +3,5 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'plugin-afdian'
+rootProject.name = 'plugin-starter'
 
