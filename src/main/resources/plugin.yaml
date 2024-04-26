@@ -4,18 +4,20 @@ apiVersion: plugin.halo.run/v1alpha1
 kind: Plugin
 metadata:
   # The name defines how the plugin is invoked, A unique name
-  name: starter
+  name: afdian
 spec:
-  enabled: true
+  enabled: false
   requires: ">=2.11.0"
   author:
-    name: Halo
-    website: https://github.com/halo-dev
+    name: Carol
+    website: https://xindu.site
   logo: logo.png
-  homepage: https://github.com/halo-dev/plugin-starter#readme
-  repo: https://github.com/halo-dev/plugin-starter
-  displayName: "插件快速开始模板"
-  description: "这是一个插件快速开始模板"
+  homepage: https://github.com/carolcoral/plugin-afdian#readme
+  repo: https://github.com/carolcoral/plugin-afdian
+  displayName: "爱发电插件"
+  description: "提供爱发电赞助用户信息"
+  settingName: plugin-afdian-settings
+  configMapName: plugin-afdian-config
   license:
     - name: "GPL-3.0"
       url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
