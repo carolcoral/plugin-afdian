@@ -4,9 +4,9 @@ apiVersion: plugin.halo.run/v1alpha1
 kind: Plugin
 metadata:
   # The name defines how the plugin is invoked, A unique name
-  name: afdian
+  name: plugin-afdian
 spec:
-  enabled: false
+  enabled: true
   requires: ">=2.11.0"
   author:
     name: Carol
