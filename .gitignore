@@ -1,60 +1,18 @@
-### Maven
-target/
-logs/
-!.mvn/wrapper/maven-wrapper.jar
-
-### Gradle
-.gradle
-/build/
-/out/
-!gradle/wrapper/gradle-wrapper.jar
-bin/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-log/
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-### Mac
-.DS_Store
-*/.DS_Store
-
-### VS Code ###
-*.project
-*.factorypath
-
-### Compiled class file
+# ---> Java
+# Compiled class file
 *.class
 
-### Log file
+# Log file
 *.log
 
-### BlueJ files
+# BlueJ files
 *.ctxt
 
-### Mobile Tools for Java (J2ME)
+# Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-### Package Files
+# Package Files #
+*.jar
 *.war
 *.nar
 *.ear
@@ -62,14 +20,7 @@ nbdist/
 *.tar.gz
 *.rar
 
-### VSCode
-.vscode
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
 
-### Local file
-application-local.yml
-application-local.yaml
-application-local.properties
-
-/ui/node_modules/
-/workplace/
-/src/main/resources/console/
