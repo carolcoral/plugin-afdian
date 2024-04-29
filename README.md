@@ -9,11 +9,10 @@
     * user_id: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，复制`开发者`下方的`user_id`值
       * token: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，在页面最下方`API Token（用来主动请求API用）`点击`生成`，然后复制生成的token即可
 
-
 ## 接口信息
 
 ### 查询赞助者
-* api: /apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList
+* api: `/apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList`
 * 返回:
 ```json
 {
