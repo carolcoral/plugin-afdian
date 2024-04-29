@@ -3,11 +3,17 @@
 
 > 提供API接口信息返回爱发电赞助信息
 
+## TODO
+- [ ] 获取用户全部赞助方案并展示
+- [ ] 获取用户全部商品内容并展示
+- [ ] 提供独立的爱发电赞助展示页面
+
 ## 使用
 1. 启动插件
 2. 在插件配置中填写自己的userId和token
     * user_id: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，复制`开发者`下方的`user_id`值
-      * token: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，在页面最下方`API Token（用来主动请求API用）`点击`生成`，然后复制生成的token即可
+    * token: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，在页面最下方`API Token（用来主动请求API用）`点击`生成`，然后复制生成的token即可
+3. 主题开发者可以使用下面的接口完成定制化开发
 
 ## 接口信息
 
