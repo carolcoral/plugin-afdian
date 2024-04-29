@@ -1,4 +1,4 @@
-package run.halo.afdian.utils;
+package site.xindu.afdian.utils;
 
 import java.security.MessageDigest;
 

@@ -1,4 +1,4 @@
-package run.halo.afdian.config;
+package site.xindu.afdian.config;
 
 import lombok.Data;
 import lombok.ToString;

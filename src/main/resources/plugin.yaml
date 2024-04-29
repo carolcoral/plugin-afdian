@@ -20,4 +20,4 @@ spec:
   configMapName: plugin-afdian-config
   license:
     - name: "GPL-3.0"
-      url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
+      url: "https://github.com/carolcoral/plugin-afdian/blob/main/LICENSE"

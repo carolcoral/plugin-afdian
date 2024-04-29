@@ -1,4 +1,4 @@
-package run.halo.afdian.service;
+package site.xindu.afdian.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

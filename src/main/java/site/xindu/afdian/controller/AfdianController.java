@@ -1,4 +1,4 @@
-package run.halo.afdian.controller;
+package site.xindu.afdian.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import run.halo.afdian.service.SponsorService;
+import site.xindu.afdian.service.SponsorService;
 import run.halo.app.plugin.ApiVersion;
 
 @ApiVersion("v1alpha1")

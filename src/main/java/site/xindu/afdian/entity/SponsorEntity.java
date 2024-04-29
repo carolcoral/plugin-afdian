@@ -1,4 +1,4 @@
-package run.halo.afdian.entity;
+package site.xindu.afdian.entity;
 
 import lombok.Data;
 import java.util.List;

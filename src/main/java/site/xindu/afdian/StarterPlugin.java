@@ -1,4 +1,4 @@
-package run.halo.afdian;
+package site.xindu.afdian;
 
 import org.springframework.stereotype.Component;
 import run.halo.app.plugin.BasePlugin;
