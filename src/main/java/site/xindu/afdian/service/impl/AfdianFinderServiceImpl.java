@@ -23,7 +23,7 @@ public class AfdianFinderServiceImpl implements AfdianFinderService {
      * @return {@link SponsorEntity}
      */
     @Override
-    public Mono<JsonNode> listSponsor(String pageNumber) {
+    public Mono<JsonNode> listSponsor(int pageNumber) {
         return sponsorService.getSponsorList(pageNumber);
     }
 
@@ -34,25 +34,6 @@ public class AfdianFinderServiceImpl implements AfdianFinderService {
      */
     @Override
     public Mono<JsonNode> listAllSponsor() {
-        List<SponsorEntity.SponsorJsonData> sources = new ArrayList<>();
-        var firstSponsorList = sponsorService.getFirstSponsorList();
-        firstSponsorList.doOnSuccess(result -> {
-            SponsorEntity sponsorEntity =
-                JsonUtils.jsonToObject(result.asText(), SponsorEntity.class);
-            var data = sponsorEntity.getData();
-            int totalPage = data.getTotal_page();
-            List<SponsorEntity.SponsorJsonData> dataList = data.getList();
-            sources.addAll(dataList);
-            for (int i = 2; i <= totalPage; i++) {
-                var sponsorList = sponsorService.getSponsorList(String.valueOf(i));
-                sponsorList.doOnSuccess(jsonNode -> {
-                    SponsorEntity sponsor =
-                        JsonUtils.jsonToObject(jsonNode.asText(), SponsorEntity.class);
-                    sources.addAll(sponsor.getData().getList());
-                });
-            }
-            data.setList(sources);
-        });
-        return firstSponsorList;
+        return sponsorService.listAllSponsor();
     }
 }

@@ -13,7 +13,7 @@ public interface AfdianFinderService {
      * 分页获取赞助者信息
      * @return {@link SponsorEntity}
      */
-    Mono<JsonNode> listSponsor(String pageNumber);
+    Mono<JsonNode> listSponsor(int pageNumber);
 
     /**
      * 获取全部赞助者信息
