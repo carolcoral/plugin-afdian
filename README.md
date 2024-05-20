@@ -99,11 +99,19 @@ halo:
 
 ### 分页查询赞助者
 * afdianFinder.listSponsor(String pageNumber)
-* 例如: <div th:text="${afdianFinder.listSponsor(1)}"></div>
+
+示例: 
+```html
+<div th:text="${afdianFinder.listSponsor(1)}"></div>
+```
 
 ### 查询全部赞助者
 * afdianFinder.listAllSponsor()
-* 例如: <div th:text="${afdianFinder.listAllSponsor()}"></div>
+
+示例:
+```html
+<div th:text="${afdianFinder.listAllSponsor()}"></div>
+```
 
 ## 返回报文JSON
 ```json
