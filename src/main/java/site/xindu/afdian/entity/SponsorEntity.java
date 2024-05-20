@@ -13,20 +13,20 @@ public class SponsorEntity {
     private SponsorData data;
 
     @Data
-    private static class SponsorData{
+    public static class SponsorData{
         private int total_count;
         private int total_page;
         private List<SponsorJsonData> list;
     }
 
     @Data
-    private static class SponsorJsonData{
+    public static class SponsorJsonData{
         private List<Object> sponsor_plans;
         private User user;
     }
 
     @Data
-    private static class User{
+    public static class User{
         private String user_id;
         private String name;
         private String avatar;

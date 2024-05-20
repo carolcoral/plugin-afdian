@@ -94,7 +94,21 @@ halo:
 
 ### 查询赞助者
 * api: `/apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList`
-* 返回:
+
+### 分页查询赞助者
+* api: `/apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList/{pageNumber}`
+
+## Finder
+
+### 分页查询赞助者
+* afdianFinder.listSponsor(String pageNumber)
+* 例如: <div th:text="${afdianFinder.listSponsor('1')}"></div>
+
+### 查询全部赞助者
+* afdianFinder.listAllSponsor()
+* 例如: <div th:text="${afdianFinder.listAllSponsor()}"></div>
+
+## 返回报文JSON
 ```json
 {
     "ec": 200,

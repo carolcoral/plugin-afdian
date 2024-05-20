@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import run.halo.app.infra.utils.JsonUtils;
+import site.xindu.afdian.entity.SponsorEntity;
 import site.xindu.afdian.utils.EncryptUtils;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 
@@ -29,8 +32,15 @@ public class SponsorService {
     /**
      * 获取第一页的爱发电赞助用户
      */
-    public Mono<JsonNode> getSponsorList() {
-        return this.settingFetcher.get("basic").flatMap(base -> {
+    public Mono<JsonNode> getFirstSponsorList() {
+        return getSponsorList("1");
+    }
+
+    /**
+     * 获取第一页的爱发电赞助用户
+     */
+    public Mono<JsonNode> getSponsorList(String pageNumber) {
+        var mono = this.settingFetcher.get("basic").flatMap(base -> {
             String token = base.get("token").asText();
             String userId = base.get("userId").asText();
             String url = "/api/open/query-sponsor";
@@ -43,7 +53,7 @@ public class SponsorService {
             String signMd5 = EncryptUtils.encrypt32(sign);
 
             params.put("user_id", userId);
-            params.put("params", "{\"page\":1}");
+            params.put("params", "{\"page\":" + pageNumber + "}");
             params.put("ts", timeInMillis);
             params.put("sign", signMd5);
 
@@ -52,9 +62,15 @@ public class SponsorService {
                     .body(BodyInserters.fromValue(params))  // JSON字符串数据
                     .retrieve() // 获取响应体
                     .bodyToMono(JsonNode.class);// 响应数据类型转换
-            log.info(body.toString());
             return body;
         });
+        mono.doOnSuccess(result -> {
+            SponsorEntity sponsorEntity =
+                JsonUtils.jsonToObject(result.toString(), SponsorEntity.class);
+            log.info("content: {}", sponsorEntity);
+            log.info("data: {}", sponsorEntity.getData());
+        }).subscribe();
+        return mono;
 
     }
 }
