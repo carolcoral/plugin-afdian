@@ -33,5 +33,5 @@ tasks.withType(JavaCompile).configureEach {
 
 
 halo {
-    version = '2.14.0-rc.1'
+    version = '2.15.0'
 }

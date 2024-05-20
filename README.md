@@ -17,6 +17,79 @@
     * token: 登录爱发电网站后访问[开发者页面](https://afdian.net/dashboard/dev)，在页面最下方`API Token（用来主动请求API用）`点击`生成`，然后复制生成的token即可
 3. 主题开发者可以使用下面的接口完成定制化开发
 
+## 开发环境
+
+插件开发的详细文档请查阅：<https://docs.halo.run/developer-guide/plugin/introduction>
+
+所需环境：
+
+1. Java 17
+2. Node 18
+3. pnpm 8
+4. Docker (可选)
+
+克隆项目：
+
+```bash
+git clone git@github.com:carolcoral/plugin-afdian.git
+
+# 或者当你 fork 之后
+
+git clone git@github.com:{your_github_id}/plugin-afdian.git
+```
+
+```bash
+cd path/to/plugin-afdian
+```
+
+### 运行方式 1（推荐）
+
+> 此方式需要本地安装 Docker
+
+```bash
+# macOS / Linux
+./gradlew pnpmInstall
+
+# Windows
+./gradlew.bat pnpmInstall
+```
+
+```bash
+# macOS / Linux
+./gradlew haloServer
+
+# Windows
+./gradlew.bat haloServer
+```
+
+执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：<https://docs.halo.run/developer-guide/plugin/basics/devtools>
+
+### 运行方式 2
+
+> 此方式需要使用源码运行 Halo
+
+编译插件：
+
+```bash
+# macOS / Linux
+./gradlew build
+
+# Windows
+./gradlew.bat build
+```
+
+修改 Halo 配置文件：
+
+```yaml
+halo:
+  plugin:
+    runtime-mode: development
+    fixedPluginPath:
+      - "/path/to/plugin-afdian"
+```
+
+最后重启 Halo 项目即可。
+
 ## 接口信息
 
 ### 查询赞助者
