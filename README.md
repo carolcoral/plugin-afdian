@@ -95,6 +95,9 @@ halo:
 ### 查询赞助者
 * api: `/apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList`
 
+### 分页查询赞助者
+* api: `/apis/api.plugin.halo.run/v1alpha1/plugins/plugin-afdian/afdian/getSponsorList/{pageNumber}`
+
 ## Finder
 
 ### 分页查询赞助者
