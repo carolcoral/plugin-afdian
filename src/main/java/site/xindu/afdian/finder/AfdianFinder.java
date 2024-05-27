@@ -1,4 +1,4 @@
-package site.xindu.afdian.service;
+package site.xindu.afdian.finder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import reactor.core.publisher.Mono;
@@ -7,7 +7,7 @@ import site.xindu.afdian.entity.SponsorEntity;
 /**
  * 为主题提供爱发电Finder接口
  */
-public interface AfdianFinderService {
+public interface AfdianFinder {
 
     /**
      * 分页获取赞助者信息
@@ -20,5 +20,12 @@ public interface AfdianFinderService {
      * @return {@link SponsorEntity}
      */
     Mono<JsonNode> listAllSponsor();
+
+    /**
+     * 格式化时间 yyyy-MM-dd
+     * @param timestamp 时间戳
+     * @return time String
+     */
+    String parseTime(Long timestamp);
 
 }

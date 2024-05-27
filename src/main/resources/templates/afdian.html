@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)https://blog.xindu.site/about -->
+<html lang="zh-CN" data-theme="light">
+<!-- head 中自定义的  -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="#f7f9fe" name="theme-color">
+    <title>爱发电</title>
+    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian.min.css}" type="text/css"
+          media="screen">
+</head>
+
+<body data-type="about">
+<div class="page" id="body-wrap">
+    <main class="layout hide-aside" id="content-inner">
+        <div id="page">
+            <div id="about-page">
+                <div class="author-content">
+                    <div class="author-content-item single reward" id="about-reward">
+                        <div class="author-content-item-tips">致谢</div>
+                        <span class="author-content-item-title">赞赏名单</span>
+                        <div class="author-content-item-description">
+                            感谢赞赏的人，因为你们，让我感受到写博客这件事情能够给你们创造价值。这会让我在这条路上走得更远。
+                        </div>
+                        <div class="about-reward">
+                            <div id="con"></div>
+                            <div id="TA-con" th:attr="onclick=|sponsorSelf('${sponsorUrl}')|">
+                                <div id="text-con">
+                                    <div id="linght"></div>
+                                    <div id="TA">赞赏作者</div>
+                                </div>
+                            </div>
+                            <div id="tube-con">
+                                <svg viewBox="0 0 1028 385" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 77H234.226L307.006 24H790" stroke="#e5e9ef" stroke-width="20"></path>
+                                    <path d="M0 140H233.035L329.72 71H1028" stroke="#e5e9ef" stroke-width="20"></path>
+                                    <path d="M1 255H234.226L307.006 307H790" stroke="#e5e9ef" stroke-width="20"></path>
+                                    <path d="M0 305H233.035L329.72 375H1028" stroke="#e5e9ef" stroke-width="20"></path>
+                                    <rect y="186" width="236" height="24" fill="#e5e9ef"></rect>
+                                    <ellipse cx="790" cy="25.5" rx="25" ry="25.5" fill="#e5e9ef"></ellipse>
+                                    <circle r="14" transform="matrix(1 0 0 -1 790 25)" fill="white"></circle>
+                                    <ellipse cx="790" cy="307.5" rx="25" ry="25.5" fill="#e5e9ef"></ellipse>
+                                    <circle r="14" transform="matrix(1 0 0 -1 790 308)" fill="white"></circle>
+                                </svg>
+                                <div id="mask">
+                                    <svg viewBox="0 0 1028 385" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 77H234.226L307.006 24H790" stroke="#f25d8e"
+                                              stroke-width="20"></path>
+                                        <path d="M0 140H233.035L329.72 71H1028" stroke="#f25d8e"
+                                              stroke-width="20"></path>
+                                        <path d="M1 255H234.226L307.006 307H790" stroke="#f25d8e"
+                                              stroke-width="20"></path>
+                                        <path d="M0 305H233.035L329.72 375H1028" stroke="#f25d8e"
+                                              stroke-width="20"></path>
+                                        <rect y="186" width="236" height="24" fill="#f25d8e"></rect>
+                                        <ellipse cx="790" cy="25.5" rx="25" ry="25.5" fill="#f25d8e"></ellipse>
+                                        <circle r="14" transform="matrix(1 0 0 -1 790 25)" fill="white"></circle>
+                                        <ellipse cx="790" cy="307.5" rx="25" ry="25.5" fill="#f25d8e"></ellipse>
+                                        <circle r="14" transform="matrix(1 0 0 -1 790 308)" fill="white"></circle>
+                                    </svg>
+                                </div>
+                                <div id="orange-mask">
+                                    <svg viewBox="0 0 1028 385" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 77H234.226L307.006 24H790" stroke="#ffd52b"
+                                              stroke-width="20"></path>
+                                        <path d="M0 140H233.035L329.72 71H1028" stroke="#ffd52b"
+                                              stroke-width="20"></path>
+                                        <path d="M1 255H234.226L307.006 307H790" stroke="#ffd52b"
+                                              stroke-width="20"></path>
+                                        <path d="M0 305H233.035L329.72 375H1028" stroke="#ffd52b"
+                                              stroke-width="20"></path>
+                                        <rect y="186" width="236" height="24" fill="#ffd52b"></rect>
+                                        <ellipse cx="790" cy="25.5" rx="25" ry="25.5" fill="#ffd52b"></ellipse>
+                                        <circle r="14" transform="matrix(1 0 0 -1 790 25)" fill="white"></circle>
+                                        <ellipse cx="790" cy="307.5" rx="25" ry="25.5" fill="#ffd52b"></ellipse>
+                                        <circle r="14" transform="matrix(1 0 0 -1 790 308)" fill="white"></circle>
+                                    </svg>
+                                </div>
+                                <p id="people">共<b th:text="${afdianFinder.listAllSponsor().data.total_count}"></b>人
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reward-list-all">
+                            <div class="reward-list-item"
+                                 th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
+                                <div>
+                                    <div>
+                                        <div class="reward-list-item-avatar">
+                                            <img th:alt="${sponsor.user.name}" class="entered loading"
+                                                 th:src="${sponsor.user.avatar}"
+                                                 data-ll-status="loading">
+                                        </div>
+                                        <div style="z-index:20;float: left;" class="reward-list-item-avatar-group">
+                                            <div class="reward-list-item-name" th:text="${sponsor.user.name}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reward-list-bottom-group">
+                                        <div class="reward-list-item-money">
+                                            ¥ <b th:text="${sponsor.all_sum_amount}"></b>
+                                        </div>
+                                        <time class="datatime reward-list-item-time"
+                                              th:text="${afdianFinder.parseTime(sponsor.last_pay_time)}"></time>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+<script th:inline="javascript">
+    function sponsorSelf(url){
+        window.open(url, '_blank');
+    }
+</script>
+</html>

@@ -17,3 +17,8 @@ spec:
           label: 用户ID
           placeholder: 请输入用户ID
           help: 启用后必填，在 https://afdian.net/dashboard/dev 中 user_id 获取
+        - $formkit: text
+          name: sponsorUrl
+          label: 赞助地址
+          placeholder: 请输入跳转赞助地址
+          help: 启用后必填，否则爱发电页面可能会报错

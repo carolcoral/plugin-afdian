@@ -10,7 +10,19 @@ public class BaseSettingConfig {
     public static final String CONFIG_MAP_NAME = "plugin-afdian-config";
     public static final String GROUP = "basic";
 
+    /**
+     * 用户token
+     */
     private String token = "";
+
+    /**
+     * 用户ID
+     */
     private String userId = "";
+
+    /**
+     * 赞助地址
+     */
+    private String sponsorUrl = "";
 
 }

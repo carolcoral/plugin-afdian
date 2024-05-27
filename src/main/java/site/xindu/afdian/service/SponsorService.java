@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 import run.halo.app.infra.utils.JsonUtils;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 import site.xindu.afdian.entity.SponsorEntity;
+import site.xindu.afdian.utils.DataUtils;
 import site.xindu.afdian.utils.EncryptUtils;
 
 @Service
@@ -34,7 +35,7 @@ public class SponsorService {
      * 获取第一页的爱发电赞助用户
      */
     public Mono<JsonNode> getSponsorList(int pageNumber) {
-        return this.settingFetcher.get("basic").flatMap(base -> {
+        var mono = this.settingFetcher.get("basic").flatMap(base -> {
             String token = base.get("token").asText();
             String userId = base.get("userId").asText();
             String url = "/api/open/query-sponsor";
@@ -52,10 +53,11 @@ public class SponsorService {
             params.put("sign", signMd5);
 
             return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)  // JSON数据类型
-                    .body(BodyInserters.fromValue(params))  // JSON字符串数据
-                    .retrieve() // 获取响应体
-                    .bodyToMono(JsonNode.class);
+                .body(BodyInserters.fromValue(params))  // JSON字符串数据
+                .retrieve() // 获取响应体
+                .bodyToMono(JsonNode.class);
         });
+        return DataUtils.changePayTime(mono);
     }
 
     /**
@@ -83,6 +85,6 @@ public class SponsorService {
             }
             data.setList(sources);
         });
-        return firstSponsorList;
+        return DataUtils.changePayTime(firstSponsorList);
     }
 }

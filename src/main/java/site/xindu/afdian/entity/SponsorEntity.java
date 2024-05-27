@@ -1,6 +1,7 @@
 package site.xindu.afdian.entity;
 
 import lombok.Data;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,7 +23,13 @@ public class SponsorEntity {
     @Data
     public static class SponsorJsonData{
         private List<Object> sponsor_plans;
+        private Double all_sum_amount;
+        private Long first_pay_time;
+        private Long last_pay_time;
+        private String firstPayTime;
+        private String lastPayTime;
         private User user;
+        private Long user_private_id;
     }
 
     @Data
