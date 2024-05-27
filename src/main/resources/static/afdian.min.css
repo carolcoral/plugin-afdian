@@ -383,8 +383,6 @@ html {
     color: #777
 }
 
-/* 关于页面赞赏 */
-
 .author-content-item.single.reward .author-content-item .author-content-item-title {
     color: var(--heo-red);
 }
@@ -413,12 +411,25 @@ html {
     color: #FFFFFF;
 }
 
+@media screen and (min-width: 1200px) {
+    .author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar img {
+        border-radius: 50%;
+        width: 80%;
+        margin-top: 0.2rem;
+   }
+}
+
 @media screen and (max-width: 1200px) {
     .author-content-item.single.reward .reward-list-all .reward-list-item {
         width: calc((100% / 4) - 0.5rem);
     }
     .author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar {
         width: 32%;
+    }
+    .author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar img {
+        border-radius: 50%;
+        width: 80%;
+        margin-top: 0.2rem;
     }
 }
 
@@ -430,10 +441,10 @@ html {
         width: 20%;
     }
     .author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar img {
-            border-radius: 50%;
-            width: 40%;
-            margin-top: 0.2rem;
-        }
+        border-radius: 50%;
+        width: 40%;
+        margin-top: 0.2rem;
+   }
 }
 
 @media screen and (max-width: 768px) {
@@ -494,12 +505,6 @@ html {
     position: static;
     height: 40px;
     transform: translateY(-40%);
-}
-
-.author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar img {
-    border-radius: 50%;
-    width: 80%;
-    margin-top: 0.2rem;
 }
 
 .author-content-item.single.reward .reward-list-all .reward-list-item .reward-list-item-avatar-group {
