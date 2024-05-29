@@ -85,8 +85,7 @@
                             </div>
                         </div>
                         <div class="reward-list-all">
-                            <div class="reward-list-item"
-                                 th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
+                            <div class="reward-list-item" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}" th:attr="onclick=|sponsorSelf('https://afdian.net/u/'+'${sponsor.user.user_id}')|">
                                 <div>
                                     <div>
                                         <div class="reward-list-item-avatar">
@@ -95,11 +94,15 @@
                                                  data-ll-status="loading">
                                         </div>
                                         <div style="z-index:20;float: left;" class="reward-list-item-avatar-group">
-                                            <div class="reward-list-item-name" th:text="${sponsor.user.name}"></div>
+                                            <div class="reward-list-item-name" th:text="${sponsor.user.name}" th:attr="title=${sponsor.user.name}"></div>
                                         </div>
                                     </div>
                                     <div class="reward-list-bottom-group">
-                                        <div class="reward-list-item-money">
+                                        <div th:if="${#conversions.convert(sponsor.all_sum_amount, 'java.math.BigDecimal') < #conversions.convert(sponsorNumber, 'java.math.BigDecimal')}" class="reward-list-item-money">
+                                            ¥ <b th:text="${sponsor.all_sum_amount}"></b>
+                                        </div>
+                                        <div th:if="${#conversions.convert(sponsor.all_sum_amount, 'java.math.BigDecimal') >= #conversions.convert(sponsorNumber, 'java.math.BigDecimal')}" class="reward-list-item-money"
+                                             style="background: var(--heo-vip);">
                                             ¥ <b th:text="${sponsor.all_sum_amount}"></b>
                                         </div>
                                         <time class="datatime reward-list-item-time"

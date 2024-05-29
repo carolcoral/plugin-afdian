@@ -4,6 +4,7 @@
     --style-border: 1px solid var(--heo-card-border);
     --style-border-always: 1px solid var(--heo-card-border);
     --heo-radius-full: 50px;
+    --heo-vip: #e5a80d;
 }
 
 
@@ -11,6 +12,7 @@
     --heo-fontcolor: #363636;
     --heo-card-bg: #fff;
     --heo-card-border: #e3e8f7;
+    --heo-vip: #e5a80d;
 }
 
 
@@ -164,6 +166,7 @@ html {
     position: relative;
     padding: 1rem 2rem;
     overflow: hidden;
+    opacity: 0.9;
 }
 
 .author-content-item.single {
@@ -537,4 +540,3 @@ html {
     color: #FFFFFF;
     white-space: nowrap;
 }
-

@@ -40,6 +40,11 @@ public class AfdianRouter {
             )
             .defaultIfEmpty("https://afdian.net/a/carolcoral");
         model.put("sponsorUrl", sponsorUrl);
+        Mono<Double> sponsorNumber = this.settingFetcher.get("basic").map(setting ->
+                setting.get("sponsorNumber").asDouble(66.0)
+            )
+            .defaultIfEmpty(66.0);
+        model.put("sponsorNumber", sponsorNumber);
         log.info(model.toString());
         return templateNameResolver.resolveTemplateNameOrDefault(request.exchange(), "afdian")
             .flatMap(templateName -> ServerResponse.ok().render(templateName, model));

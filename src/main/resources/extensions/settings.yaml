@@ -11,14 +11,23 @@ spec:
           name: token
           label: 用户token
           placeholder: 请输入用户TOKEN
+          validation: required
           help: 启用后必填，在 https://afdian.net/dashboard/dev 中 API TOKEN 获取
         - $formkit: text
           name: userId
           label: 用户ID
           placeholder: 请输入用户ID
+          validation: required
           help: 启用后必填，在 https://afdian.net/dashboard/dev 中 user_id 获取
         - $formkit: text
           name: sponsorUrl
           label: 赞助地址
           placeholder: 请输入跳转赞助地址
+          validation: required
           help: 启用后必填，否则爱发电页面可能会报错
+        - $formkit: text
+          name: sponsorNumber
+          label: 切换赞助金额显示颜色值
+          value: 66
+          placeholder: 请输入需要切换颜色的赞助金额限制
+          help: 非必填，默认切换赞助金额颜色的金额值为 66

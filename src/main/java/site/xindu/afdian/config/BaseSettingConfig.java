@@ -25,4 +25,9 @@ public class BaseSettingConfig {
      */
     private String sponsorUrl = "";
 
+    /**
+     * 切换赞助金额显示颜色值
+     */
+    private Double sponsorNumber = 66.00;
+
 }
