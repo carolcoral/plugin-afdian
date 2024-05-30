@@ -568,7 +568,6 @@ html {
 body {
 	position:relative;
 	min-height:100%;
-	background:var(--heo-background);
 	color:var(--heo-fontcolor);
 	font-size:var(--global-font-size);
 	font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei";
