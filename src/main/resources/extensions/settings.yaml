@@ -31,3 +31,29 @@ spec:
           value: 66
           placeholder: 请输入需要切换颜色的赞助金额限制
           help: 非必填，默认切换赞助金额颜色的金额值为 66
+    - group: themeSetting
+      label: 赞赏展示页设置
+      formSchema:
+        - $formkit: select
+          name: themeStyle
+          id: themeStyle
+          key: themeStyle
+          label: 赞助展示页面样式
+          value: afdian
+          options:
+            - label: 默认展示页面
+              value: afdian
+            - label: 展示页2
+              value: afdian2
+        - $formkit: url
+          name: rewardTopImgUrl
+          label: 顶部图片URL
+          if: $get(themeStyle).value == 'afdian2'
+          placeholder: 请输入顶部图片地址
+          value: https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg
+        - $formkit: text
+          name: rewardTopTitle
+          label: 顶部图片文字
+          if: $get(themeStyle).value == 'afdian2'
+          placeholder: 请输入顶部图片文字内容
+          value: 感谢我的赞赏者们

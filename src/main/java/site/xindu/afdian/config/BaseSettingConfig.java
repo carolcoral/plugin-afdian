@@ -30,4 +30,5 @@ public class BaseSettingConfig {
      */
     private Double sponsorNumber = 66.00;
 
+
 }

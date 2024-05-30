@@ -1,25 +1,28 @@
 package site.xindu.afdian.finder.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.beans.BeanUtils;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Mono;
-import run.halo.app.infra.utils.JsonUtils;
+import run.halo.app.plugin.ReactiveSettingFetcher;
 import run.halo.app.theme.finders.Finder;
 import site.xindu.afdian.entity.SponsorEntity;
 import site.xindu.afdian.finder.AfdianFinder;
 import site.xindu.afdian.service.SponsorService;
 import site.xindu.afdian.utils.DataUtils;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
+@RequiredArgsConstructor
 @Finder("afdianFinder")
 public class AfdianFinderImpl implements AfdianFinder {
 
     @Autowired
     private SponsorService sponsorService;
+
+    private final ReactiveSettingFetcher settingFetcher;
+
+    private static final String BASIC = "basic";
 
     /**
      * 获取全部赞助者信息
@@ -52,10 +55,23 @@ public class AfdianFinderImpl implements AfdianFinder {
     @Override
     public String parseTime(Long timestamp) {
         var length = timestamp.toString().length();
-        if (length == 10){
+        if (length == 10) {
             timestamp = timestamp * 1000;
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(new Date(timestamp));
+    }
+
+    /**
+     * 获取设置的标记金额
+     *
+     * @return 标记金额
+     */
+    @Override
+    public Mono<Double> getRewardNumber() {
+        return this.settingFetcher.get(BASIC).map(setting ->
+                setting.get("sponsorNumber").asDouble(66.0)
+            )
+            .defaultIfEmpty(66.0);
     }
 }

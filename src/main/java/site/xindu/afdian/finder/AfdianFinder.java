@@ -28,4 +28,10 @@ public interface AfdianFinder {
      */
     String parseTime(Long timestamp);
 
+    /**
+     * 获取设置的标记金额
+     * @return 标记金额
+     */
+    Mono<Double> getRewardNumber();
+
 }
