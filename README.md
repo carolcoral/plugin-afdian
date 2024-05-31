@@ -6,11 +6,10 @@
 
 > Halo 2.0 爱发电插件
 
-> 预览效果: [新 · 都在](https://blog.xindu.site/zanzhu)
-
-> 代码仓库: [plugin-afdian](https://github.com/carolcoral/plugin-afdian)
-
-> 插件自带多款赞赏展示页面
+* 预览效果: [新 · 都在](https://blog.xindu.site/zanzhu)
+* 代码仓库: [plugin-afdian](https://github.com/carolcoral/plugin-afdian)
+* 插件自带多款赞赏展示页面
+* 如果你也喜欢该插件，可以通过 [爱发电](https://afdian.net/a/carolcoral) 或下面赞赏码对我进行支持～～
 
 ![theme1](https://redirect.cnkj.site:8099/shudaosan/2024/66568d582726b.webp?type=blog)
 ![theme3](./theme3.png)
@@ -26,6 +25,12 @@
 
 ## 文档
 [https://blog.xindu.site/docs/plugin-afdian](https://blog.xindu.site/docs/plugin-afdian)
+
+## 支持我
+
+| ![weixin](./weixin.jpg) | ![zhifubao](./zhifubao.jpg) |
+|:------------------------|:----------------------------|
+
 
 ## 开发环境
 
