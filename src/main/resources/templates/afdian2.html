@@ -10,8 +10,7 @@
     <meta content="telephone=no" name="format-detection">
     <meta content="#f7f9fe" name="theme-color">
     <title>爱发电</title>
-    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian2.min.css}" type="text/css"
-          media="screen">
+    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian2.min.css}" type="text/css" media="screen">
 </head>
 <body>
 <div class="page" id="body-wrap">
@@ -20,10 +19,11 @@
             <div class="line-numbers">
                 <div class="html-edited">
                     <div class="author-content author-content-item essayPage single"
-                         th:style="'background:url('+(${rewardTopImgUrl})+')  left 28% / cover no-repeat !important;'">
+                         th:style="'background:url('+(${rewardTopImgUrl})+')  left 28% / cover no-repeat !important;'"
+                    th:if="${enableRewardRoll}">
                         <div class="card-content">
                             <div class="author-content-item-tips">爱发电</div>
-                            <span class="author-content-item-title" th:text="${rewardTopTitle}"></span>
+                            <span class="author-content-item-title">[[${rewardTopTitle}]]</span>
                             <canvas id="header_canvas" width="920" height="1014"
                                     style="position: absolute; bottom: 0px;"></canvas>
                         </div>

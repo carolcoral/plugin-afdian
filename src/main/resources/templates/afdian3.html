@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://redirect.cnkj.site:18083/page-links -->
+<html lang="zh-CN" data-theme="light">
+<!-- head 中自定义的 -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="#f7f9fe" name="theme-color">
+    <title>爱发电</title>
+    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian3.min.css}" type="text/css"
+          media="screen">
+</head>
+
+<body>
+<main class="layout hide-aside" id="content-inner">
+    <div id="page">
+        <div class="flink" id="banners">
+            <div class="banners-title">
+                <div class="banners-title-small">爱发电</div>
+                <div class="banners-title-big" th:text="${rewardTopTitle}"></div>
+            </div>
+            <div class="banner-button-group">
+                <a class="banner-button" th:href="${sponsorUrl}"
+                   rel="external nofollow" data-pjax-state="">
+                    <i class="haofont hao-icon-link"></i>
+                    <span class="banner-button-text">赞助博主</span></a>
+            </div>
+            <div class="tags-group-all nowrapMove">
+                <div class="tags-group-wrapper" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
+                    <div class="tags-group-icon-pair">
+                        <a class="tags-group-icon" target="_blank"
+                           th:attr="href='https://afdian.net/u/'+'${sponsor.user.user_id}'" title="">
+                            <img th:src="${sponsor.user.avatar}"
+                                 th:attr="title=${sponsor.user.name}" data-ll-status="loaded" class="entered loaded"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--互动友链-->
+        <div class="flink" id="article-container">
+            <!-- 第一个，使用卡片展示 -->
+            <div class="flink-list">
+                <div class="flink-list-item" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
+                    <a class="cf-friends-link" rel="external nofollow" target="_blank"
+                       th:attr="href='https://afdian.net/u/'+'${sponsor.user.user_id}'">
+                        <img class="flink-avatar cf-friends-avatar entered loaded" alt="Shadowsocks"
+                             th:src="${sponsor.user.avatar}"
+                             data-ll-status="loaded">
+                        <div class="flink-item-info no-lightbox">
+                            <span class="flink-item-name cf-friends-name" th:text="${sponsor.user.name}"></span>
+                            <span class="flink-item-date"
+                                  th:text="${afdianFinder.parseTime(sponsor.last_pay_time)}"></span>
+                            <span class="flink-item-desc"
+                                  th:if="${#conversions.convert(sponsor.all_sum_amount, 'java.math.BigDecimal') < #conversions.convert(sponsorNumber, 'java.math.BigDecimal')}">
+                                                <div class="reward-list-item-money">
+                                                    ¥ <b th:text="${sponsor.all_sum_amount}"></b>
+                                                </div>
+                                            </span>
+                            <span class="flink-item-desc"
+                                  th:if="${#conversions.convert(sponsor.all_sum_amount, 'java.math.BigDecimal') >= #conversions.convert(sponsorNumber, 'java.math.BigDecimal')}">
+                                                <div class="reward-list-item-money" style="color: #e5a80d">
+                                                    ¥ <b th:text="${sponsor.all_sum_amount}"></b>
+                                                </div>
+                                            </span>
+                            <img th:src="${sponsor.user.avatar}" data-ll-status="loaded" class="entered loaded"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+<style>
+    .reward-list-item-money{
+       position: absolute;
+       bottom: 0.2em;
+       right: 0.5em;
+       float: left;
+   }
+
+   .flink#article-container .flink-list > .flink-list-item:hover a .flink-item-desc .reward-list-item-money{
+       position: absolute;
+       bottom: 0.2em;
+       left: 1em;
+       float: left;
+   }
+
+   .flink-item-date{
+       display: inline-flex;
+       position: absolute;
+       bottom: 0.2em;
+       flex-flow: column;
+       font-size: smaller;
+   }
+
+   .flink#article-container .flink-list > .flink-list-item:hover  .flink-item-date{
+       display: inline-flex;
+       position: absolute;
+       align-items: flex-end;
+       bottom: 0.2em;
+       right: 1em;
+       color: #5d0ac7;
+   }
+</style>
+</html>

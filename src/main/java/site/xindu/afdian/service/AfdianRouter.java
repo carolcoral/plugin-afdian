@@ -59,6 +59,10 @@ public class AfdianRouter {
                 setting.get("sponsorNumber").asDouble()
             ).defaultIfEmpty(66.00);
         model.put("sponsorNumber", sponsorNumber);
+        Mono<String> rewardTopTitle = this.settingFetcher.get(THEME_SETTING).map(setting ->
+            setting.get("rewardTopTitle").asText()
+        ).defaultIfEmpty("感谢我的赞赏者们");
+        model.put("rewardTopTitle", rewardTopTitle);
     }
 
     private void extracted(HashMap<String, Object> model, String theme) {
@@ -71,10 +75,10 @@ public class AfdianRouter {
                     ).defaultIfEmpty(
                         "https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg");
                 model.put("rewardTopImgUrl", rewardTopImgUrl);
-                Mono<String> rewardTopTitle = this.settingFetcher.get(THEME_SETTING).map(setting ->
-                    setting.get("rewardTopTitle").asText()
-                ).defaultIfEmpty("感谢我的赞赏者们");
-                model.put("rewardTopTitle", rewardTopTitle);
+                Mono<Boolean> enableRewardRoll = this.settingFetcher.get(THEME_SETTING).map(setting ->
+                    setting.get("enableRewardRoll").asBoolean()
+                ).defaultIfEmpty(false);
+                model.put("enableRewardRoll", enableRewardRoll);
                 break;
             default:
                 break;

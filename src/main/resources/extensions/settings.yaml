@@ -43,17 +43,30 @@ spec:
           options:
             - label: 默认展示页面
               value: afdian
-            - label: 展示页2
+            - label: 顶图样式
               value: afdian2
+            - label: 滚动样式
+              value: afdian3
+        - $formkit: text
+          name: rewardTopTitle
+          label: 标题文字
+          placeholder: 请输入文字内容
+          value: 感谢我的赞赏者们
+        - $formkit: radio
+          name: enableRewardRoll
+          id: enableRewardRoll
+          key: enableRewardRoll
+          label: 顶部图片展示
+          if: $get(themeStyle).value == 'afdian2'
+          value: true
+          options:
+            - label: 启用
+              value: true
+            - label: 禁用
+              value: false
         - $formkit: url
           name: rewardTopImgUrl
           label: 顶部图片URL
-          if: $get(themeStyle).value == 'afdian2'
+          if: $get(themeStyle).value == 'afdian2' && $get(enableRewardRoll).value
           placeholder: 请输入顶部图片地址
           value: https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg
-        - $formkit: text
-          name: rewardTopTitle
-          label: 顶部图片文字
-          if: $get(themeStyle).value == 'afdian2'
-          placeholder: 请输入顶部图片文字内容
-          value: 感谢我的赞赏者们

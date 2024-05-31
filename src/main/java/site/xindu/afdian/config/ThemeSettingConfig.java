@@ -27,4 +27,9 @@ public class ThemeSettingConfig {
      * 顶部图片文字
      */
     private String rewardTopTitle = "";
+
+    /**
+     * 启用顶部头像滚动
+     */
+    private Boolean enableRewardRoll = false;
 }
