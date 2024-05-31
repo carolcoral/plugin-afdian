@@ -10,7 +10,10 @@
 
 > 代码仓库: [plugin-afdian](https://github.com/carolcoral/plugin-afdian)
 
-![afdian.webp](https://redirect.cnkj.site:8099/shudaosan/2024/66568d582726b.webp?type=blog)
+> 插件自带多款赞赏展示页面
+
+![theme1](https://redirect.cnkj.site:8099/shudaosan/2024/66568d582726b.webp?type=blog)
+![theme3](./theme3.png)
 
 ## 使用方式
 1. 启动插件
