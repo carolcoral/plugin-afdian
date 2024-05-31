@@ -75,10 +75,24 @@ public class AfdianRouter {
                     ).defaultIfEmpty(
                         "https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg");
                 model.put("rewardTopImgUrl", rewardTopImgUrl);
-                Mono<Boolean> enableRewardRoll = this.settingFetcher.get(THEME_SETTING).map(setting ->
-                    setting.get("enableRewardRoll").asBoolean()
-                ).defaultIfEmpty(false);
+                Mono<Boolean> enableRewardRoll =
+                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                        setting.get("enableRewardRoll").asBoolean()
+                    ).defaultIfEmpty(false);
                 model.put("enableRewardRoll", enableRewardRoll);
+                break;
+            case "afdian3":
+                Mono<String> theme3ImgUrl =
+                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                        setting.get("theme3ImgUrl").asText()
+                    ).defaultIfEmpty(
+                        "https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg");
+                model.put("theme3ImgUrl", theme3ImgUrl);
+                Mono<Boolean> enableTheme3Img =
+                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                        setting.get("enableTheme3Img").asBoolean()
+                    ).defaultIfEmpty(false);
+                model.put("enableTheme3Img", enableTheme3Img);
                 break;
             default:
                 break;

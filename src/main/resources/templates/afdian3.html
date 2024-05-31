@@ -34,7 +34,8 @@
                         <a class="tags-group-icon" target="_blank"
                            th:attr="href='https://afdian.net/u/'+'${sponsor.user.user_id}'" title="">
                             <img th:src="${sponsor.user.avatar}"
-                                 th:attr="title=${sponsor.user.name}" data-ll-status="loaded" class="entered loaded"></a>
+                                 th:attr="title=${sponsor.user.name}" data-ll-status="loaded"
+                                 class="entered loaded"></a>
                     </div>
                 </div>
             </div>
@@ -106,4 +107,16 @@
        color: #5d0ac7;
    }
 </style>
+<th:block th:if="${enableTheme3Img}">
+    <style>
+        .tags-group-all.nowrapMove {
+            transform: rotate(0);
+            padding-bottom: 2rem;
+            background-image: url([[${theme3ImgUrl}]]);
+            z-index: -1;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</th:block>
 </html>

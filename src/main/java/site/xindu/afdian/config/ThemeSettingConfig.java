@@ -19,17 +19,25 @@ public class ThemeSettingConfig {
     private String themeStyle = "afdian";
 
     /**
-     * 顶部图片URL
-     */
-    private String rewardTopImgUrl = "";
-
-    /**
      * 顶部图片文字
      */
     private String rewardTopTitle = "";
+
+    // 样式2
 
     /**
      * 启用顶部头像滚动
      */
     private Boolean enableRewardRoll = false;
+
+    /**
+     * 顶部图片URL
+     */
+    private String rewardTopImgUrl = "";
+
+    // 样式3
+
+    private Boolean enableTheme3Img = false;
+
+    private String theme3ImgUrl = "";
 }
