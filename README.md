@@ -28,7 +28,7 @@
 
 ## 支持我
 
-| ![weixin](./weixin.jpg) | ![zhifubao](./zhifubao.jpg) |
+| ![weixin](https://redirect.cnkj.site:8099/b/2024/665de1eeaf4a4.webp?type=blog) | ![zhifubao](https://redirect.cnkj.site:8099/b/2024/665de1cda2c05.webp?type=blog) |
 |:------------------------|:----------------------------|
 
 
