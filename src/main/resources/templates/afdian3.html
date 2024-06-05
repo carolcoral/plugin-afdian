@@ -46,7 +46,7 @@
             <div class="flink-list">
                 <div class="flink-list-item" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
                     <a class="cf-friends-link" rel="external nofollow" target="_blank"
-                       th:attr="href='https://afdian.net/u/'+'${sponsor.user.user_id}'">
+                       th:attr="onclick=|sponsorSelf('https://afdian.net/u/'+'${sponsor.user.user_id}')|">
                         <img class="flink-avatar cf-friends-avatar entered loaded" alt="Shadowsocks"
                              th:src="${sponsor.user.avatar}"
                              data-ll-status="loaded">
@@ -119,4 +119,9 @@
         }
     </style>
 </th:block>
+<script th:inline="javascript">
+    function sponsorSelf(url){
+        window.open(url, '_blank');
+    }
+</script>
 </html>

@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ApiVersion;
+import site.xindu.afdian.service.ConfigService;
 import site.xindu.afdian.service.SponsorService;
+import java.util.HashMap;
+import java.util.Map;
 
 @ApiVersion("v1alpha1")
 @RequestMapping("/afdian")
@@ -19,8 +22,11 @@ public class AfdianController {
 
     private final SponsorService sponsorService;
 
-    public AfdianController(SponsorService sponsorService) {
+    private final ConfigService configService;
+
+    public AfdianController(SponsorService sponsorService, ConfigService configService) {
         this.sponsorService = sponsorService;
+        this.configService = configService;
     }
 
 
@@ -32,6 +38,11 @@ public class AfdianController {
     @GetMapping("/getSponsorList/{pageNumber}")
     public Mono<JsonNode> listSponsor(@PathVariable("pageNumber") int pageNumber){
         return sponsorService.getSponsorList(pageNumber);
+    }
+
+    @GetMapping("/config")
+    public Map<String, Object> getConfig(){
+        return configService.getConfig();
     }
 
 }
