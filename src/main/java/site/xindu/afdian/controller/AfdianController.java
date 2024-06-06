@@ -1,6 +1,7 @@
 package site.xindu.afdian.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +11,6 @@ import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ApiVersion;
 import site.xindu.afdian.service.ConfigService;
 import site.xindu.afdian.service.SponsorService;
-import java.util.HashMap;
-import java.util.Map;
 
 @ApiVersion("v1alpha1")
 @RequestMapping("/afdian")
@@ -41,7 +40,7 @@ public class AfdianController {
     }
 
     @GetMapping("/config")
-    public Map<String, Object> getConfig(){
+    public Mono<JsonNode> getConfig(){
         return configService.getConfig();
     }
 
