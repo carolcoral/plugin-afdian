@@ -11,8 +11,10 @@
 * 插件自带多款赞赏展示页面
 * 如果你也喜欢该插件，可以通过 [爱发电](https://afdian.net/a/carolcoral) 或下面赞赏码对我进行支持～～
 
+![665ff6de2659a.webp](https://redirect.cnkj.site:8099/b/2024/665ff6de2659a.webp?type=blog)
+
 ![theme1](https://redirect.cnkj.site:8099/shudaosan/2024/66568d582726b.webp?type=blog)
-![theme3](./theme3.png)
+![theme3](https://redirect.cnkj.site:8099/shudaosan/2024/665f0b959c340.webp?type=blog)
 
 ## 使用方式
 1. 启动插件
@@ -30,7 +32,6 @@
 
 | ![weixin](https://redirect.cnkj.site:8099/b/2024/665de1eeaf4a4.webp?type=blog) | ![zhifubao](https://redirect.cnkj.site:8099/b/2024/665de1cda2c05.webp?type=blog) |
 |:------------------------|:----------------------------|
-
 
 ## 开发环境
 
