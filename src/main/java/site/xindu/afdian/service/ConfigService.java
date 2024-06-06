@@ -38,12 +38,12 @@ public class ConfigService {
                 var key = next.getKey();
                 var value = next.getValue();
                 try {
-                    if ("sponsorUrl".equalsIgnoreCase(key)) {
-                        next.setValue(value);
-                    } else if ("sponsorNumber".equalsIgnoreCase(key)) {
-                        next.setValue(value);
-                    } else {
+                    if ("userId".equalsIgnoreCase(key)) {
                         next.setValue(new ObjectMapper().readTree(""));
+                    } else if ("token".equalsIgnoreCase(key)) {
+                        next.setValue(new ObjectMapper().readTree(""));
+                    } else {
+                        next.setValue(value);
                     }
                 } catch (JsonProcessingException e) {
                     log.error("转换Config 数据出现异常!", e);
