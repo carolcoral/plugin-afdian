@@ -23,8 +23,6 @@ public class AfdianRouter {
 
     private final ReactiveSettingFetcher settingFetcher;
 
-    private static final String BASIC = "basic";
-
     private static final String THEME_SETTING = "themeSetting";
 
     @Bean
@@ -50,12 +48,12 @@ public class AfdianRouter {
 
     private void defaultModel(HashMap<String, Object> model) {
         Mono<String> sponsorUrl =
-            this.settingFetcher.get(BASIC).map(setting ->
+            this.settingFetcher.get(THEME_SETTING).map(setting ->
                 setting.get("sponsorUrl").asText()
             ).defaultIfEmpty("https://afdian.net/a/carolcoral");
         model.put("sponsorUrl", sponsorUrl);
         Mono<Double> sponsorNumber =
-            this.settingFetcher.get(BASIC).map(setting ->
+            this.settingFetcher.get(THEME_SETTING).map(setting ->
                 setting.get("sponsorNumber").asDouble()
             ).defaultIfEmpty(66.00);
         model.put("sponsorNumber", sponsorNumber);

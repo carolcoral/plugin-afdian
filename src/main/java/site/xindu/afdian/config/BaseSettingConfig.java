@@ -20,15 +20,6 @@ public class BaseSettingConfig {
      */
     private String userId = "";
 
-    /**
-     * 赞助地址
-     */
-    private String sponsorUrl = "";
-
-    /**
-     * 切换赞助金额显示颜色值
-     */
-    private Double sponsorNumber = 66.00;
 
 
 }

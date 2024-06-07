@@ -22,7 +22,7 @@ public class AfdianFinderImpl implements AfdianFinder {
 
     private final ReactiveSettingFetcher settingFetcher;
 
-    private static final String BASIC = "basic";
+    private static final String THEME_SETTING = "themeSetting";
 
     /**
      * 获取全部赞助者信息
@@ -69,7 +69,7 @@ public class AfdianFinderImpl implements AfdianFinder {
      */
     @Override
     public Mono<Double> getRewardNumber() {
-        return this.settingFetcher.get(BASIC).map(setting ->
+        return this.settingFetcher.get(THEME_SETTING).map(setting ->
                 setting.get("sponsorNumber").asDouble(66.0)
             )
             .defaultIfEmpty(66.0);

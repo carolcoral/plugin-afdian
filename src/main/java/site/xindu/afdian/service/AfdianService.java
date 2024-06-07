@@ -9,6 +9,12 @@ import reactor.core.publisher.Mono;
 public interface AfdianService {
 
     /**
+     * 获取token
+     * @return token对象
+     */
+    Mono<JsonNode> getAuthToken();
+
+    /**
      * 分页获取爱发电赞助用户
      * @param pageNumber 页码
      * @return 赞助用户集合

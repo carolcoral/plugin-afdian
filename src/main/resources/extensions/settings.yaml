@@ -19,9 +19,18 @@ spec:
           placeholder: 请输入用户ID
           validation: required
           help: 启用后必填，在 https://afdian.net/dashboard/dev 中 user_id 获取
+    - group: themeSetting
+      label: 赞赏展示页设置
+      formSchema:
+        - $formkit: text
+          name: rewardTopTitle
+          label: 标题文字
+          placeholder: 请输入文字内容
+          value: 感谢我的赞赏者们
         - $formkit: text
           name: sponsorUrl
           label: 赞助地址
+          value: https://afdian.net/a/carolcoral
           placeholder: 请输入跳转赞助地址
           validation: required
           help: 启用后必填，否则爱发电页面可能会报错
@@ -31,9 +40,6 @@ spec:
           value: 66
           placeholder: 请输入需要切换颜色的赞助金额限制
           help: 非必填，默认切换赞助金额颜色的金额值为 66
-    - group: themeSetting
-      label: 赞赏展示页设置
-      formSchema:
         - $formkit: select
           name: themeStyle
           id: themeStyle
@@ -47,11 +53,6 @@ spec:
               value: afdian2
             - label: 滚动样式
               value: afdian3
-        - $formkit: text
-          name: rewardTopTitle
-          label: 标题文字
-          placeholder: 请输入文字内容
-          value: 感谢我的赞赏者们
         - $formkit: radio
           name: enableRewardRoll
           id: enableRewardRoll

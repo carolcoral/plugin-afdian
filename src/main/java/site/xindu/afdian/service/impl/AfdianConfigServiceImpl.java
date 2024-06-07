@@ -19,7 +19,7 @@ public class AfdianConfigServiceImpl implements AfdianConfigService {
         this.settingFetcher = settingFetcher;
     }
 
-    private static final String BASIC = "basic";
+    private static final String THEME_SETTING = "themeSetting";
 
     /**
      * 获取插件配置信息
@@ -28,7 +28,7 @@ public class AfdianConfigServiceImpl implements AfdianConfigService {
      */
     @Override
     public Mono<JsonNode> getConfig() {
-        return this.settingFetcher.get(BASIC).map(res -> {
+        return this.settingFetcher.get(THEME_SETTING).map(res -> {
             var fields = res.fields();
             while (fields.hasNext()) {
                 var next = fields.next();

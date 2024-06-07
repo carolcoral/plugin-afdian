@@ -33,6 +33,33 @@ public class AfdianServiceImpl implements AfdianService {
     private WebClient webClient = WebClient.builder().baseUrl("https://afdian.net").build();
 
     /**
+     * 获取token
+     *
+     * @return token对象
+     */
+    @Override
+    public Mono<JsonNode> getAuthToken() {
+        return this.settingFetcher.get("basic").flatMap(base -> {
+            String token = base.get("token").asText();
+            String userId = base.get("userId").asText();
+            String url = "/api/open/query-sponsor";
+            Map<String, Object> params = new HashMap<>();
+            var timeInMillis = Calendar.getInstance().getTimeInMillis() / 1000;
+
+            var sign = token.concat("params{\"page\":1}ts").concat(String.valueOf(timeInMillis))
+                .concat("user_id").concat(userId);
+
+            String signMd5 = EncryptUtils.encrypt32(sign);
+
+
+            return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)  // JSON数据类型
+                .body(BodyInserters.fromValue(params))  // JSON字符串数据
+                .retrieve() // 获取响应体
+                .bodyToMono(JsonNode.class);
+        });
+    }
+
+    /**
      * 分页获取爱发电赞助用户
      *
      * @param pageNumber 页码
