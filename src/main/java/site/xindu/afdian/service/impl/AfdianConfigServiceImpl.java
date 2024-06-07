@@ -1,37 +1,34 @@
-package site.xindu.afdian.service;
+package site.xindu.afdian.service.impl;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.function.Predicate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.JsonSerializable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import reactor.core.Disposable;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
-import run.halo.app.infra.utils.JsonUtils;
 import run.halo.app.plugin.ReactiveSettingFetcher;
-import site.xindu.afdian.config.BaseSettingConfig;
+import site.xindu.afdian.service.AfdianConfigService;
 
 @Service
 @Slf4j
-public class ConfigService {
+public class AfdianConfigServiceImpl implements AfdianConfigService {
 
     private final ReactiveSettingFetcher settingFetcher;
 
-    public ConfigService(ReactiveSettingFetcher settingFetcher) {
+    public AfdianConfigServiceImpl(ReactiveSettingFetcher settingFetcher) {
         this.settingFetcher = settingFetcher;
     }
 
-    private static final String BASIC = "basic";
+    private static final String THEME_SETTING = "themeSetting";
 
+    /**
+     * 获取插件配置信息
+     *
+     * @return 插件配置信息（敏感信息已处理）
+     */
+    @Override
     public Mono<JsonNode> getConfig() {
-        return this.settingFetcher.get(BASIC).map(res -> {
+        return this.settingFetcher.get(THEME_SETTING).map(res -> {
             var fields = res.fields();
             while (fields.hasNext()) {
                 var next = fields.next();
@@ -52,5 +49,4 @@ public class ConfigService {
             return res;
         });
     }
-
 }

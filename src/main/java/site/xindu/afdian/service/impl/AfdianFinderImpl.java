@@ -1,4 +1,4 @@
-package site.xindu.afdian.finder.impl;
+package site.xindu.afdian.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.text.SimpleDateFormat;
@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 import run.halo.app.theme.finders.Finder;
 import site.xindu.afdian.entity.SponsorEntity;
-import site.xindu.afdian.finder.AfdianFinder;
-import site.xindu.afdian.service.SponsorService;
+import site.xindu.afdian.service.AfdianFinder;
+import site.xindu.afdian.service.AfdianService;
 import site.xindu.afdian.utils.DataUtils;
 
 @RequiredArgsConstructor
@@ -18,11 +18,11 @@ import site.xindu.afdian.utils.DataUtils;
 public class AfdianFinderImpl implements AfdianFinder {
 
     @Autowired
-    private SponsorService sponsorService;
+    private AfdianService afdianService;
 
     private final ReactiveSettingFetcher settingFetcher;
 
-    private static final String BASIC = "basic";
+    private static final String THEME_SETTING = "themeSetting";
 
     /**
      * 获取全部赞助者信息
@@ -31,7 +31,7 @@ public class AfdianFinderImpl implements AfdianFinder {
      */
     @Override
     public Mono<JsonNode> listSponsor(int pageNumber) {
-        var mono = sponsorService.getSponsorList(pageNumber);
+        var mono = afdianService.getSponsorList(pageNumber);
         return DataUtils.changePayTime(mono);
     }
 
@@ -42,7 +42,7 @@ public class AfdianFinderImpl implements AfdianFinder {
      */
     @Override
     public Mono<JsonNode> listAllSponsor() {
-        var mono = sponsorService.listAllSponsor();
+        var mono = afdianService.listAllSponsor();
         return DataUtils.changePayTime(mono);
     }
 
@@ -69,7 +69,7 @@ public class AfdianFinderImpl implements AfdianFinder {
      */
     @Override
     public Mono<Double> getRewardNumber() {
-        return this.settingFetcher.get(BASIC).map(setting ->
+        return this.settingFetcher.get(THEME_SETTING).map(setting ->
                 setting.get("sponsorNumber").asDouble(66.0)
             )
             .defaultIfEmpty(66.0);

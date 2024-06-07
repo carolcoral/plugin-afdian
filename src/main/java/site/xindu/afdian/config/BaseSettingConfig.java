@@ -21,14 +21,13 @@ public class BaseSettingConfig {
     private String userId = "";
 
     /**
-     * 赞助地址
+     * 登录用户名
      */
-    private String sponsorUrl = "";
+    private String username;
 
     /**
-     * 切换赞助金额显示颜色值
+     * 登录用户密码
      */
-    private Double sponsorNumber = 66.00;
-
+    private String password;
 
 }
