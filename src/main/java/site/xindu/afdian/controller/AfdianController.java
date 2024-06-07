@@ -1,7 +1,6 @@
 package site.xindu.afdian.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ApiVersion;
-import site.xindu.afdian.service.ConfigService;
-import site.xindu.afdian.service.SponsorService;
+import site.xindu.afdian.service.AfdianConfigService;
+import site.xindu.afdian.service.AfdianService;
 
 @ApiVersion("v1alpha1")
 @RequestMapping("/afdian")
@@ -19,28 +18,28 @@ import site.xindu.afdian.service.SponsorService;
 public class AfdianController {
 
 
-    private final SponsorService sponsorService;
+    private final AfdianService afdianService;
 
-    private final ConfigService configService;
+    private final AfdianConfigService configService;
 
-    public AfdianController(SponsorService sponsorService, ConfigService configService) {
-        this.sponsorService = sponsorService;
+    public AfdianController(AfdianService afdianService, AfdianConfigService configService) {
+        this.afdianService = afdianService;
         this.configService = configService;
     }
 
 
     @GetMapping("/getSponsorList")
-    public Mono<JsonNode> listAllSponsor(){
-        return sponsorService.listAllSponsor();
+    public Mono<JsonNode> listAllSponsor() {
+        return afdianService.listAllSponsor();
     }
 
     @GetMapping("/getSponsorList/{pageNumber}")
-    public Mono<JsonNode> listSponsor(@PathVariable("pageNumber") int pageNumber){
-        return sponsorService.getSponsorList(pageNumber);
+    public Mono<JsonNode> listSponsor(@PathVariable("pageNumber") int pageNumber) {
+        return afdianService.getSponsorList(pageNumber);
     }
 
     @GetMapping("/config")
-    public Mono<JsonNode> getConfig(){
+    public Mono<JsonNode> getConfig() {
         return configService.getConfig();
     }
 

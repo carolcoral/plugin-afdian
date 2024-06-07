@@ -1,4 +1,4 @@
-package site.xindu.afdian.service;
+package site.xindu.afdian.component;
 
 import org.pf4j.PluginWrapper;
 import org.springframework.stereotype.Component;

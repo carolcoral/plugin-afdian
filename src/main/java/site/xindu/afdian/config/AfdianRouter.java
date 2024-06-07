@@ -1,4 +1,4 @@
-package site.xindu.afdian.service;
+package site.xindu.afdian.config;
 
 import java.util.HashMap;
 import lombok.RequiredArgsConstructor;

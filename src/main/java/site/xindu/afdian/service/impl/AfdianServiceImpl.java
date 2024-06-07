@@ -1,11 +1,6 @@
-package site.xindu.afdian.service;
+package site.xindu.afdian.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -15,16 +10,22 @@ import reactor.core.publisher.Mono;
 import run.halo.app.infra.utils.JsonUtils;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 import site.xindu.afdian.entity.SponsorEntity;
+import site.xindu.afdian.service.AfdianService;
 import site.xindu.afdian.utils.DataUtils;
 import site.xindu.afdian.utils.EncryptUtils;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
-public class SponsorService {
+public class AfdianServiceImpl implements AfdianService {
 
     private final ReactiveSettingFetcher settingFetcher;
 
-    public SponsorService(ReactiveSettingFetcher settingFetcher) {
+    public AfdianServiceImpl(ReactiveSettingFetcher settingFetcher) {
         this.settingFetcher = settingFetcher;
     }
 
@@ -32,8 +33,12 @@ public class SponsorService {
     private WebClient webClient = WebClient.builder().baseUrl("https://afdian.net").build();
 
     /**
-     * 获取第一页的爱发电赞助用户
+     * 分页获取爱发电赞助用户
+     *
+     * @param pageNumber 页码
+     * @return 赞助用户集合
      */
+    @Override
     public Mono<JsonNode> getSponsorList(int pageNumber) {
         var mono = this.settingFetcher.get("basic").flatMap(base -> {
             String token = base.get("token").asText();
@@ -61,10 +66,11 @@ public class SponsorService {
     }
 
     /**
-     * 获取全部赞助者信息
+     * 获取全部爱发电赞助用户
      *
-     * @return {@link SponsorEntity}
+     * @return 全部赞助用户
      */
+    @Override
     public Mono<JsonNode> listAllSponsor() {
         List<SponsorEntity.SponsorJsonData> sources = new ArrayList<>();
         var firstSponsorList = getSponsorList(1);
@@ -86,5 +92,15 @@ public class SponsorService {
             data.setList(sources);
         });
         return DataUtils.changePayTime(firstSponsorList);
+    }
+
+    /**
+     * 获取全部赞助方案
+     *
+     * @return 全部赞助方案JSON
+     */
+    @Override
+    public Mono<JsonNode> listSponsorshipProgram() {
+        return null;
     }
 }
