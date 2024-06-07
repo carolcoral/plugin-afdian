@@ -25,6 +25,8 @@ public class AfdianServiceImpl implements AfdianService {
 
     private final ReactiveSettingFetcher settingFetcher;
 
+    private final String BASIC = "basic";
+
     public AfdianServiceImpl(ReactiveSettingFetcher settingFetcher) {
         this.settingFetcher = settingFetcher;
     }
@@ -40,18 +42,12 @@ public class AfdianServiceImpl implements AfdianService {
     @Override
     public Mono<JsonNode> getAuthToken() {
         return this.settingFetcher.get("basic").flatMap(base -> {
-            String token = base.get("token").asText();
-            String userId = base.get("userId").asText();
-            String url = "/api/open/query-sponsor";
+            String username = base.get("username").asText();
+            String password = base.get("password").asText();
+            String url = "/api/passport/login";
             Map<String, Object> params = new HashMap<>();
-            var timeInMillis = Calendar.getInstance().getTimeInMillis() / 1000;
-
-            var sign = token.concat("params{\"page\":1}ts").concat(String.valueOf(timeInMillis))
-                .concat("user_id").concat(userId);
-
-            String signMd5 = EncryptUtils.encrypt32(sign);
-
-
+            params.put("account", username);
+            params.put("password", password);
             return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)  // JSON数据类型
                 .body(BodyInserters.fromValue(params))  // JSON字符串数据
                 .retrieve() // 获取响应体
@@ -122,12 +118,65 @@ public class AfdianServiceImpl implements AfdianService {
     }
 
     /**
+     * 获取全部赞助方案、商品、VIP服务
+     *
+     * @return 全部赞助方案、商品、VIP服务
+     */
+    @Override
+    public Mono<JsonNode> listAllSponsorship() {
+        Mono<JsonNode> authToken = getAuthToken();
+        return authToken.flatMap(res -> {
+            var token = res.get("data").get("auth_token").textValue();
+            String url = "/api/creator/all-plans";
+            String cookie = "auth_token=".concat(token);
+            return webClient.get().uri(url).header("Cookie", cookie)
+                .retrieve() // 获取响应体
+                .bodyToMono(JsonNode.class);
+        });
+    }
+
+    /**
      * 获取全部赞助方案
      *
      * @return 全部赞助方案JSON
      */
     @Override
-    public Mono<JsonNode> listSponsorshipProgram() {
-        return null;
+    public Mono<JsonNode> listPlansAndSales() {
+        Mono<JsonNode> authToken = getAuthToken();
+        return authToken.flatMap(res -> {
+            var token = res.get("data").get("auth_token").textValue();
+            String cookie = "auth_token=".concat(token);
+            return this.settingFetcher.get(BASIC).flatMap(setting->{
+                var userId = setting.get("userId").textValue();
+                String url = "/api/creator/get-plans?user_id=";
+                url = url.concat(userId);
+                return webClient.get().uri(url).header("Cookie", cookie)
+                    .retrieve() // 获取响应体
+                    .bodyToMono(JsonNode.class);
+            });
+        });
     }
+
+    /**
+     * 获取全部商品
+     *
+     * @return 全部商品
+     */
+    @Override
+    public Mono<JsonNode> listAlbum() {
+        Mono<JsonNode> authToken = getAuthToken();
+        return authToken.flatMap(res -> {
+            var token = res.get("data").get("auth_token").textValue();
+            String cookie = "auth_token=".concat(token);
+            return this.settingFetcher.get(BASIC).flatMap(setting->{
+                var userId = setting.get("userId").textValue();
+                String url = "/api/user/get-album-list?user_id=";
+                url = url.concat(userId);
+                return webClient.get().uri(url).header("Cookie", cookie)
+                    .retrieve() // 获取响应体
+                    .bodyToMono(JsonNode.class);
+            });
+        });
+    }
+
 }

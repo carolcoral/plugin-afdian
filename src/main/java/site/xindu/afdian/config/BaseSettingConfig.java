@@ -20,6 +20,14 @@ public class BaseSettingConfig {
      */
     private String userId = "";
 
+    /**
+     * 登录用户名
+     */
+    private String username;
 
+    /**
+     * 登录用户密码
+     */
+    private String password;
 
 }

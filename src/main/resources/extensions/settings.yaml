@@ -19,6 +19,18 @@ spec:
           placeholder: 请输入用户ID
           validation: required
           help: 启用后必填，在 https://afdian.net/dashboard/dev 中 user_id 获取
+        - $formkit: text
+          name: username
+          label: 用户名
+          value: username
+          placeholder: 请输入爱发电登录用户名，如果不输入用户名和密码，获取赞助方案等接口会出现异常
+          help: 如果不输入用户名和密码，获取赞助方案等接口会出现异常
+        - $formkit: text
+          name: password
+          label: 密码
+          value: password
+          placeholder: 请输入爱发电登录用户密码，如果不输入用户名和密码，获取赞助方案等接口会出现异常
+          help: 如果不输入用户名和密码，获取赞助方案等接口会出现异常
     - group: themeSetting
       label: 赞赏展示页设置
       formSchema:

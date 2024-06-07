@@ -43,4 +43,19 @@ public class AfdianController {
         return configService.getConfig();
     }
 
+    @GetMapping("/listAllSponsorship")
+    public Mono<JsonNode> listAllSponsorship() {
+        return afdianService.listAllSponsorship();
+    }
+
+    @GetMapping("/listPlansAndSales")
+    public Mono<JsonNode> listPlansAndSales() {
+        return afdianService.listPlansAndSales();
+    }
+
+    @GetMapping("/listAlbum")
+    public Mono<JsonNode> listAlbum() {
+        return afdianService.listAlbum();
+    }
+
 }
