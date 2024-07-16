@@ -8,7 +8,7 @@ import lombok.ToString;
 public class BaseSettingConfig {
 
     public static final String CONFIG_MAP_NAME = "plugin-afdian-config";
-    public static final String GROUP = "basic";
+    public static final String GROUP = "account";
 
     /**
      * 用户token

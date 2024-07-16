@@ -33,7 +33,7 @@
                 <div class="tags-group-wrapper" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
                     <div class="tags-group-icon-pair">
                         <a class="tags-group-icon" target="_blank"
-                           th:attr="href='https://afdian.net/u/'+'${sponsor.user.user_id}'" title="">
+                           th:attr="href='${baseUrl}'+'/u/'+'${sponsor.user.user_id}'" title="">
                             <img th:src="${sponsor.user.avatar}"
                                  th:attr="title=${sponsor.user.name}" data-ll-status="loaded"
                                  class="entered loaded"></a>
@@ -47,7 +47,7 @@
             <div class="flink-list">
                 <div class="flink-list-item" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}">
                     <a class="cf-friends-link" rel="external nofollow" target="_blank"
-                       th:attr="onclick=|sponsorSelf('https://afdian.net/u/'+'${sponsor.user.user_id}')|">
+                       th:attr="onclick=|sponsorSelf('${baseUrl}'+'/u/'+'${sponsor.user.user_id}')|">
                         <img class="flink-avatar cf-friends-avatar entered loaded" alt=""
                              th:src="${sponsor.user.avatar}"
                              data-ll-status="loaded">

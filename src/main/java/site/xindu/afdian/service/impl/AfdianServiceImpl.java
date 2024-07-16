@@ -1,6 +1,7 @@
 package site.xindu.afdian.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,12 @@ public class AfdianServiceImpl implements AfdianService {
 
     private final String BASIC = "basic";
 
+    // 创建webClient
+    private WebClient webClient;
+
     public AfdianServiceImpl(ReactiveSettingFetcher settingFetcher) {
         this.settingFetcher = settingFetcher;
     }
-
-    // 创建webClient
-    private WebClient webClient = WebClient.builder().baseUrl("https://afdian.net").build();
 
     /**
      * 获取token
@@ -41,13 +42,17 @@ public class AfdianServiceImpl implements AfdianService {
      */
     @Override
     public Mono<JsonNode> getAuthToken() {
-        return this.settingFetcher.get("basic").flatMap(base -> {
+        return this.settingFetcher.get(BASIC).flatMap(base -> {
             String username = base.get("username").asText();
             String password = base.get("password").asText();
             String url = "/api/passport/login";
             Map<String, Object> params = new HashMap<>();
             params.put("account", username);
             params.put("password", password);
+
+            String baseUrl = base.get("baseUrl").asText();
+            this.webClient = WebClient.builder().baseUrl(baseUrl).build();
+
             return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)  // JSON数据类型
                 .body(BodyInserters.fromValue(params))  // JSON字符串数据
                 .retrieve() // 获取响应体
@@ -63,7 +68,7 @@ public class AfdianServiceImpl implements AfdianService {
      */
     @Override
     public Mono<JsonNode> getSponsorList(int pageNumber) {
-        var mono = this.settingFetcher.get("basic").flatMap(base -> {
+        var mono = this.settingFetcher.get(BASIC).flatMap(base -> {
             String token = base.get("token").asText();
             String userId = base.get("userId").asText();
             String url = "/api/open/query-sponsor";
@@ -79,6 +84,9 @@ public class AfdianServiceImpl implements AfdianService {
             params.put("params", "{\"page\":" + String.valueOf(pageNumber) + "}");
             params.put("ts", timeInMillis);
             params.put("sign", signMd5);
+
+            String baseUrl = base.get("baseUrl").asText();
+            this.webClient = WebClient.builder().baseUrl(baseUrl).build();
 
             return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)  // JSON数据类型
                 .body(BodyInserters.fromValue(params))  // JSON字符串数据
@@ -129,6 +137,13 @@ public class AfdianServiceImpl implements AfdianService {
             var token = res.get("data").get("auth_token").textValue();
             String url = "/api/creator/all-plans";
             String cookie = "auth_token=".concat(token);
+
+            this.settingFetcher.get(BASIC).map(base -> {
+                String baseUrl = base.get("baseUrl").asText();
+                this.webClient = WebClient.builder().baseUrl(baseUrl).build();
+                return this.webClient;
+            });
+
             return webClient.get().uri(url).header("Cookie", cookie)
                 .retrieve() // 获取响应体
                 .bodyToMono(JsonNode.class);
@@ -146,10 +161,17 @@ public class AfdianServiceImpl implements AfdianService {
         return authToken.flatMap(res -> {
             var token = res.get("data").get("auth_token").textValue();
             String cookie = "auth_token=".concat(token);
-            return this.settingFetcher.get(BASIC).flatMap(setting->{
+            return this.settingFetcher.get(BASIC).flatMap(setting -> {
                 var userId = setting.get("userId").textValue();
                 String url = "/api/creator/get-plans?user_id=";
                 url = url.concat(userId);
+
+                this.settingFetcher.get(BASIC).map(base -> {
+                    String baseUrl = base.get("baseUrl").asText();
+                    this.webClient = WebClient.builder().baseUrl(baseUrl).build();
+                    return this.webClient;
+                });
+
                 return webClient.get().uri(url).header("Cookie", cookie)
                     .retrieve() // 获取响应体
                     .bodyToMono(JsonNode.class);
@@ -168,10 +190,17 @@ public class AfdianServiceImpl implements AfdianService {
         return authToken.flatMap(res -> {
             var token = res.get("data").get("auth_token").textValue();
             String cookie = "auth_token=".concat(token);
-            return this.settingFetcher.get(BASIC).flatMap(setting->{
+            return this.settingFetcher.get(BASIC).flatMap(setting -> {
                 var userId = setting.get("userId").textValue();
                 String url = "/api/user/get-album-list?user_id=";
                 url = url.concat(userId);
+
+                this.settingFetcher.get(BASIC).map(base -> {
+                    String baseUrl = base.get("baseUrl").asText();
+                    this.webClient = WebClient.builder().baseUrl(baseUrl).build();
+                    return this.webClient;
+                });
+
                 return webClient.get().uri(url).header("Cookie", cookie)
                     .retrieve() // 获取响应体
                     .bodyToMono(JsonNode.class);

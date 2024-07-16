@@ -74,4 +74,34 @@ public class AfdianFinderImpl implements AfdianFinder {
             )
             .defaultIfEmpty(66.0);
     }
+
+    /**
+     * 获取全部赞助方案、商品、VIP服务
+     *
+     * @return 全部赞助方案、商品、VIP服务
+     */
+    @Override
+    public Mono<JsonNode> listAllSponsorship() {
+        return afdianService.listAllSponsorship();
+    }
+
+    /**
+     * 获取全部赞助方案、商品列表
+     *
+     * @return 全部赞助方案、商品列表
+     */
+    @Override
+    public Mono<JsonNode> listPlansAndSales() {
+        return afdianService.listPlansAndSales();
+    }
+
+    /**
+     * 获取全部作品集
+     *
+     * @return 全部作品集
+     */
+    @Override
+    public Mono<JsonNode> listAlbum() {
+        return afdianService.listAlbum();
+    }
 }

@@ -8,24 +8,31 @@ spec:
       label: 基本设置
       formSchema:
         - $formkit: text
+          name: baseUrl
+          label: 爱发电访问地址
+          placeholder: 请输入爱发电访问地址（末尾不带/）
+          validation: required
+          help: 启用后必填
+          value: https://afdian.com
+        - $formkit: text
           name: token
           label: 用户token
           placeholder: 请输入用户TOKEN
           validation: required
-          help: 启用后必填，在 https://afdian.net/dashboard/dev 中 API TOKEN 获取
+          help: 启用后必填，在 https://afdian.com/dashboard/dev 中 API TOKEN 获取
         - $formkit: text
           name: userId
           label: 用户ID
           placeholder: 请输入用户ID
           validation: required
-          help: 启用后必填，在 https://afdian.net/dashboard/dev 中 user_id 获取
+          help: 启用后必填，在 https://afdian.com/dashboard/dev 中 user_id 获取
         - $formkit: text
           name: username
           label: 用户名
           value: username
           placeholder: 请输入爱发电登录用户名，如果不输入用户名和密码，获取赞助方案等接口会出现异常
           help: 如果不输入用户名和密码，获取赞助方案等接口会出现异常
-        - $formkit: text
+        - $formkit: password
           name: password
           label: 密码
           value: password
@@ -42,7 +49,7 @@ spec:
         - $formkit: text
           name: sponsorUrl
           label: 赞助地址
-          value: https://afdian.net/a/carolcoral
+          value: https://afdian.com/a/carolcoral
           placeholder: 请输入跳转赞助地址
           validation: required
           help: 启用后必填，否则爱发电页面可能会报错

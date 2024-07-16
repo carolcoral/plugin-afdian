@@ -34,4 +34,23 @@ public interface AfdianFinder {
      */
     Mono<Double> getRewardNumber();
 
+    /**
+     * 获取全部赞助方案、商品、VIP服务
+     * @return 全部赞助方案、商品、VIP服务
+     */
+    Mono<JsonNode> listAllSponsorship();
+
+
+    /**
+     * 获取全部赞助方案、商品列表
+     * @return 全部赞助方案、商品列表
+     */
+    Mono<JsonNode> listPlansAndSales();
+
+    /**
+     * 获取全部作品集
+     * @return 全部作品集
+     */
+    Mono<JsonNode> listAlbum();
+
 }

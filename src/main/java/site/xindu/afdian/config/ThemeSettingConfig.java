@@ -14,6 +14,11 @@ public class ThemeSettingConfig {
     public static final String GROUP = "themeSetting";
 
     /**
+     * 爱发电地址
+     */
+    private String baseUrl = "";
+
+    /**
      * 赞助地址
      */
     private String sponsorUrl = "";

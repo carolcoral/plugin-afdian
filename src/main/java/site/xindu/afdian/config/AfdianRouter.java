@@ -24,6 +24,7 @@ public class AfdianRouter {
     private final ReactiveSettingFetcher settingFetcher;
 
     private static final String THEME_SETTING = "themeSetting";
+    private static final String BASIC = "basic";
 
     @Bean
     RouterFunction<ServerResponse> momentRouterFunction() {
@@ -50,7 +51,7 @@ public class AfdianRouter {
         Mono<String> sponsorUrl =
             this.settingFetcher.get(THEME_SETTING).map(setting ->
                 setting.get("sponsorUrl").asText()
-            ).defaultIfEmpty("https://afdian.net/a/carolcoral");
+            ).defaultIfEmpty("https://afdian.com/a/carolcoral");
         model.put("sponsorUrl", sponsorUrl);
         Mono<Double> sponsorNumber =
             this.settingFetcher.get(THEME_SETTING).map(setting ->
@@ -61,6 +62,11 @@ public class AfdianRouter {
             setting.get("rewardTopTitle").asText()
         ).defaultIfEmpty("感谢我的赞赏者们");
         model.put("rewardTopTitle", rewardTopTitle);
+        Mono<String> baseUrl =
+            this.settingFetcher.get(BASIC).map(setting ->
+                setting.get("baseUrl").asText()
+            ).defaultIfEmpty("https://afdian.com");
+        model.put("baseUrl", baseUrl);
     }
 
     private void extracted(HashMap<String, Object> model, String theme) {

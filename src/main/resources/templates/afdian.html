@@ -85,7 +85,9 @@
                             </div>
                         </div>
                         <div class="reward-list-all">
-                            <div class="reward-list-item" th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}" th:attr="onclick=|sponsorSelf('https://afdian.net/u/'+'${sponsor.user.user_id}')|">
+                            <div class="reward-list-item"
+                                 th:each="sponsor : ${afdianFinder.listAllSponsor().data.list}"
+                                 th:attr="onclick=|sponsorSelf('${baseUrl}'+'/u/'+'${sponsor.user.user_id}')|">
                                 <div>
                                     <div>
                                         <div class="reward-list-item-avatar">
