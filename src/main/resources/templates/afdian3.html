@@ -24,7 +24,8 @@
             </div>
             <div class="banner-button-group">
                 <a class="banner-button"
-                   th:attr="onclick=|sponsorSelf(${sponsorUrl})|"
+                   th:attr="href=|${sponsorUrl}|"
+                   target="_blank"
                    rel="external nofollow" data-pjax-state="">
                     <i class="haofont hao-icon-link"></i>
                     <span class="banner-button-text">赞助博主</span></a>

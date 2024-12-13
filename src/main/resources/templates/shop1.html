@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)https://blog.xindu.site/about -->
+<html lang="zh-CN" data-theme="light">
+<!-- head 中自定义的  -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="#f7f9fe" name="theme-color">
+    <title>爱发电商品</title>
+    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian.shop.css}" type="text/css"
+          media="screen">
+</head>
+
+<body data-type="shop">
+<main class="afdian_shop">
+    <section class="decoration section bd-container" id="Services">
+        <h2 class="section-title">[[${afdian_shop_basic_title}]]<br>[[${afdian_shop_second_title}]]</h2>
+
+        <!--        shop list-->
+        <div class="card" th:each="sales : ${afdianFinder.listPlansAndSales().data.sale_list}">
+            <div class="card__border"></div>
+            <div style="margin: 0 auto">
+                <img th:src="${sales.pic}" th:alt="pic" class="decoration__img card__border_img">
+            </div>
+            <div class="card_title__container">
+                <span class="card_title" th:text="${sales.name}"></span>
+                <div class="card_paragraph" th:utext="${sales.desc}"></div>
+                <hr class="line">
+                <a th:href="${baseUrl} + '/item/' + ${sales.plan_id}" target="_blank">
+                    <button class="button">跳转购买</button>
+                </a>
+            </div>
+        </div>
+
+
+    </section>
+</main>
+</body>
+<script th:inline="javascript">
+    function sponsorSelf(url){
+        window.open(url, '_blank');
+    }
+</script>
+</html>

@@ -108,3 +108,20 @@ spec:
           if: $get(themeStyle).value == 'afdian3' && $get(enableTheme3Img).value
           placeholder: 请输入背景图片URL
           value: https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg
+    - group: shop
+      label: 商品页设置
+      formSchema:
+        - $formkit: text
+          name: basic_title
+          label: 爱发电商品页大标题
+          placeholder: 请输入爱发电商品页大标题
+          validation: required
+          help: 启用后必填
+          value: 爱发电商品展示
+        - $formkit: text
+          name: second_title
+          label: 爱发电商品页副标题
+          placeholder: 请输入爱发电商品页副标题
+          validation: required
+          help: 启用后必填
+          value: services
