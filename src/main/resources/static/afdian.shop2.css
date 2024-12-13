@@ -1,0 +1,200 @@
+.vm-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.wrapper .content-wrapper {
+    display: flex;
+}
+
+.content-wrapper {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.mq.pr-0-16 {
+    padding-right: 0;
+}
+
+.mq.pl-0-16 {
+    padding-left: 0;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-box {
+    display: flex;
+}
+
+/* shop */
+.wrapper .vm-plan-shop-card {
+    margin-right: 24px;
+    margin-bottom: 24px;
+}
+
+.vm-plan-shop-card {
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 232px;
+    min-width: 232px;
+    position: relative;
+    padding-bottom: 60px;
+    border: #f7f7f7 0.5em solid;
+}
+
+.vm-plan-shop-card .cover {
+    padding-bottom: 100%;
+    height: auto;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+
+.vm-plan-shop-card .tit {
+    padding: 8px 16px 0 16px;
+}
+.text-overflow-2 {
+    -webkit-line-clamp: 2;
+}
+.text-overflow-2, .text-overflow-3 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.fwb {
+    font-weight: 700;
+}
+
+.vm-plan-shop-card .price {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    right: 16px;
+    background: #fff;
+}
+
+.mq.fs-20-16 {
+    font-size: 20px;
+}
+.flex-align-items-baseline {
+    align-items: baseline;
+}
+.flex-box {
+    display: flex;
+}
+.fwb {
+    font-weight: 700;
+}
+.black-8 {
+    color: rgba(0, 0, 0, .8) !important;
+}
+.mq.fs-14-12 {
+    font-size: 14px !important;
+}
+.ml4 {
+    margin-left: 4px !important;
+}
+.fs12 {
+    font-size: 12px !important;
+}
+.purple {
+    color: #946ce6;
+}
+.vm-plan-shop-card .price {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    right: 16px;
+    background: #fff;
+}
+.mq.fs-20-16 {
+    font-size: 20px;
+}
+.flex-align-items-baseline {
+    align-items: baseline;
+}
+.flex-bet, .flex-justify-content-space-between {
+    justify-content: space-between;
+}
+.flex-box {
+    display: flex
+;
+}
+.fwb {
+    font-weight: 700;
+}
+.vm-tag.circle {
+    border-radius: 1000px;
+    line-height: normal;
+}
+
+.vm-tag.purple {
+    background-color: #946ce6;
+}
+.vm-tag {
+    display: inline-flex;
+    background-color: #fcb239;
+    color: #fff;
+    font-size: 12px;
+    padding: 1px 6px;
+    border-radius: 2px;
+}
+.pl10 {
+    padding-left: 10px !important;
+}
+.pr10 {
+    padding-right: 10px !important;
+}
+.pb4 {
+    padding-bottom: 4px !important;
+}
+.pt4 {
+    padding-top: 4px !important;
+}
+.lh1 {
+    line-height: 1;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.purple {
+    color: #946ce6;
+}
+.vm-plan-shop-card .img-pre {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 4px 4px 0 0;
+    /*max-width: 100%;*/
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    width: 100%;
+}
+
+a.link_afdian:link {
+    color: black;
+    text-decoration: none;
+}
+
+a.link_afdian:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a.link_afdian:hover {
+    color: black;
+    text-decoration: none;
+}

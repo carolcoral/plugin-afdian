@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="#f7f9fe" name="theme-color">
+    <title>爱发电商品</title>
+    <link rel="stylesheet" th:href="@{/plugins/plugin-afdian/assets/static/afdian.shop2.css}" type="text/css"
+          media="screen">
+</head>
+<body>
+<div class="vm-page">
+    <section data-v-707b4ec4="" class="page-content-w100">
+        <div data-v-6c3c203f="" data-v-707b4ec4="" class="content-wrapper"><!----><!----><!---->
+            <div data-v-6c3c203f="" data-v-707b4ec4="" class="content-wrapper w100" style="display: block;">
+                <div data-v-6c3c203f="" data-v-707b4ec4="" class="flex-box flex-wrap mq pl-0-16 pr-0-16">
+                    <div data-v-5e932d90="" data-v-6c3c203f="" class="vm-plan-shop-card large" data-v-707b4ec4="" th:each="sales : ${afdianFinder.listPlansAndSales().data.sale_list}">
+                        <a th:href="${baseUrl} + '/item/' + ${sales.plan_id}" target="_blank" class="link_afdian">
+                            <div data-v-5e932d90="" class="cover">
+                                <img data-v-c86dd8fa="" data-v-5e932d90=""
+                                     th:src="${sales.pic}"
+                                     th:alt="pic" class="vm-pic img-pre">
+                            </div>
+                            <div data-v-5e932d90="" class="tit fwb text-overflow-2" th:text="${sales.name}"></div>
+
+                            <div data-v-5e932d90="" class="price mq fs-20-16 fwb flex-box flex-align-items-baseline"  th:if="${sales.has_time_limit_price==0}">
+                            <span data-v-5e932d90="" class="black-8">
+                                <span data-v-5e932d90="" class="mq fs-14-12">
+                                    ￥
+                                </span>
+                                <span th:text="${sales.price}"></span>
+                            </span>
+                                <div th:if="${sales.vip_price} != null">
+                                    <span data-v-5e932d90="" class="purple ml4 fs12" th:text="'¥' + ${sales.vip_price} + '会员价'"></span>
+                                </div>
+                            </div>
+
+                            <div data-v-5e932d90=""
+                                 class="price mq fs-20-16 fwb flex-box flex-align-items-baseline flex-bet"
+                                 th:if="${sales.has_time_limit_price==1}">
+                            <span data-v-5e932d90="" class="black-8">
+                                <span data-v-5e932d90="" class="mq fs-14-12">
+                                    ￥
+                                </span>
+                                <span th:text="${sales.price}"></span>
+                            </span>
+                                <div data-v-6cb2db58="" data-v-5e932d90=""
+                                     class="vm-tag nowrap purple circle pt4 pr10 pb4 pl10 lh1">
+                                    <span style="color: #fff;" th:text="限时特价"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

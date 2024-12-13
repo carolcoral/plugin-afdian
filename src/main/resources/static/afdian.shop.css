@@ -1189,5 +1189,9 @@ so that it is smooth among other more minor things */
     height: 100%;
 }
 
+.card_paragraph a{
+    color: #fff;
+}
+
 
 

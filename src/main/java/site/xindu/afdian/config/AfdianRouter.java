@@ -116,24 +116,34 @@ public class AfdianRouter {
         var model = new HashMap<String, Object>();
         defaultModel(model);
         return this.settingFetcher.get(SHOP).flatMap(setting -> {
-            String themeStyle = "shop1";
-            extractedShop(model);
+            String themeStyle = setting.get("themeStyle").asText();
+            if (StringUtils.isEmpty(themeStyle)) {
+                themeStyle = "shop1 ";
+            }
+            extractedShop(model, themeStyle);
             return templateNameResolver.resolveTemplateNameOrDefault(request.exchange(), themeStyle)
                 .flatMap(templateName -> ServerResponse.ok().render(templateName, model));
         });
     }
 
-    private void extractedShop(HashMap<String, Object> model) {
-        Mono<String> basicTitle =
-            this.settingFetcher.get(SHOP).map(setting ->
-                setting.get("basic_title").asText()
-            ).defaultIfEmpty("爱发电商品展示");
-        model.put("afdian_shop_basic_title", basicTitle);
-        Mono<String> secondTitle =
-            this.settingFetcher.get(SHOP).map(setting ->
-                setting.get("second_title").asText()
-            ).defaultIfEmpty("services");
-        model.put("afdian_shop_second_title", secondTitle);
+    private void extractedShop(HashMap<String, Object> model, String theme) {
+        // 不同样式存在不同的默认值
+        switch (theme) {
+            case "shop1":
+                Mono<String> basicTitle =
+                    this.settingFetcher.get(SHOP).map(setting ->
+                        setting.get("basic_title").asText()
+                    ).defaultIfEmpty("爱发电商品展示");
+                model.put("afdian_shop_basic_title", basicTitle);
+                Mono<String> secondTitle =
+                    this.settingFetcher.get(SHOP).map(setting ->
+                        setting.get("second_title").asText()
+                    ).defaultIfEmpty("services");
+                model.put("afdian_shop_second_title", secondTitle);
+                break;
+            default:
+                break;
+        }
     }
 
 }

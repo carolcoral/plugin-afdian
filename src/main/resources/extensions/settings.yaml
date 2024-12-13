@@ -111,10 +111,22 @@ spec:
     - group: shop
       label: 商品页设置
       formSchema:
+        - $formkit: select
+          name: themeStyle
+          id: themeStyle
+          key: themeStyle
+          label: 商品展示页面样式
+          value: shop1
+          options:
+            - label: 默认展示页面
+              value: shop1
+            - label: 爱发电官网样式
+              value: shop2
         - $formkit: text
           name: basic_title
           label: 爱发电商品页大标题
           placeholder: 请输入爱发电商品页大标题
+          if: $get(themeStyle).value == 'shop1'
           validation: required
           help: 启用后必填
           value: 爱发电商品展示
@@ -122,6 +134,7 @@ spec:
           name: second_title
           label: 爱发电商品页副标题
           placeholder: 请输入爱发电商品页副标题
+          if: $get(themeStyle).value == 'shop1'
           validation: required
           help: 启用后必填
           value: services
