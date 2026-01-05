@@ -26,7 +26,7 @@
 
 ## 支持我
 
-<img url='https://pic.xindu.site/CYwHnI.png?type=blog' style='width:10em;'></img>
+<img src='https://pic.xindu.site/CYwHnI.png?type=blog' style='width:20em;'></img>
 
 ## 开发环境
 
