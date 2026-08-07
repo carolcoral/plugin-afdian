@@ -1,6 +1,6 @@
 package site.xindu.afdian.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import reactor.core.publisher.Mono;
 import site.xindu.afdian.entity.SponsorEntity;
 

@@ -1,6 +1,6 @@
 package site.xindu.afdian.service.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
@@ -69,7 +69,7 @@ public class AfdianFinderImpl implements AfdianFinder {
      */
     @Override
     public Mono<Double> getRewardNumber() {
-        return this.settingFetcher.get(THEME_SETTING).map(setting ->
+        return this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                 setting.get("sponsorNumber").asDouble(66.0)
             )
             .defaultIfEmpty(66.0);

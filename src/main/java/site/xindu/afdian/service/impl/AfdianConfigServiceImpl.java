@@ -1,13 +1,13 @@
 package site.xindu.afdian.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 import site.xindu.afdian.service.AfdianConfigService;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.node.ObjectNode;
 
 @Service
 @Slf4j
@@ -28,22 +28,15 @@ public class AfdianConfigServiceImpl implements AfdianConfigService {
      */
     @Override
     public Mono<JsonNode> getConfig() {
-        return this.settingFetcher.get(THEME_SETTING).map(res -> {
-            var fields = res.fields();
-            while (fields.hasNext()) {
-                var next = fields.next();
+        return this.settingFetcher.getSettingValue(THEME_SETTING).map(res -> {
+            var properties = ((ObjectNode) res).properties();
+            for (var next : properties) {
                 var key = next.getKey();
                 var value = next.getValue();
-                try {
-                    if ("userId".equalsIgnoreCase(key)) {
-                        next.setValue(new ObjectMapper().readTree(""));
-                    } else if ("token".equalsIgnoreCase(key)) {
-                        next.setValue(new ObjectMapper().readTree(""));
-                    } else {
-                        next.setValue(value);
-                    }
-                } catch (JsonProcessingException e) {
-                    log.error("转换Config 数据出现异常!", e);
+                if ("userId".equalsIgnoreCase(key) || "token".equalsIgnoreCase(key)) {
+                    next.setValue(JsonNodeFactory.instance.nullNode());
+                } else {
+                    next.setValue(value);
                 }
             }
             return res;
