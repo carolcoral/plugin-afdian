@@ -1,7 +1,8 @@
 package site.xindu.afdian.service;
 
-import tools.jackson.databind.JsonNode;
+import java.util.Map;
 import reactor.core.publisher.Mono;
+import site.xindu.afdian.entity.SaleListEntity;
 import site.xindu.afdian.entity.SponsorEntity;
 
 /**
@@ -13,13 +14,13 @@ public interface AfdianFinder {
      * 分页获取赞助者信息
      * @return {@link SponsorEntity}
      */
-    Mono<JsonNode> listSponsor(int pageNumber);
+    Mono<SponsorEntity> listSponsor(int pageNumber);
 
     /**
      * 获取全部赞助者信息
      * @return {@link SponsorEntity}
      */
-    Mono<JsonNode> listAllSponsor();
+    Mono<SponsorEntity> listAllSponsor();
 
     /**
      * 格式化时间 yyyy-MM-dd
@@ -38,19 +39,18 @@ public interface AfdianFinder {
      * 获取全部赞助方案、商品、VIP服务
      * @return 全部赞助方案、商品、VIP服务
      */
-    Mono<JsonNode> listAllSponsorship();
-
+    Mono<Map<String, Object>> listAllSponsorship();
 
     /**
      * 获取全部赞助方案、商品列表
      * @return 全部赞助方案、商品列表
      */
-    Mono<JsonNode> listPlansAndSales();
+    Mono<SaleListEntity> listPlansAndSales();
 
     /**
      * 获取全部作品集
      * @return 全部作品集
      */
-    Mono<JsonNode> listAlbum();
+    Mono<Map<String, Object>> listAlbum();
 
 }

@@ -1,17 +1,20 @@
 package site.xindu.afdian.service.impl;
 
-import tools.jackson.databind.JsonNode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Mono;
 import run.halo.app.plugin.ReactiveSettingFetcher;
 import run.halo.app.theme.finders.Finder;
+import site.xindu.afdian.entity.SaleListEntity;
 import site.xindu.afdian.entity.SponsorEntity;
 import site.xindu.afdian.service.AfdianFinder;
 import site.xindu.afdian.service.AfdianService;
-import site.xindu.afdian.utils.DataUtils;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
 @RequiredArgsConstructor
 @Finder("afdianFinder")
@@ -22,6 +25,8 @@ public class AfdianFinderImpl implements AfdianFinder {
 
     private final ReactiveSettingFetcher settingFetcher;
 
+    private static final JsonMapper JSON_MAPPER = JsonMapper.builder().build();
+
     private static final String THEME_SETTING = "themeSetting";
 
     /**
@@ -30,9 +35,8 @@ public class AfdianFinderImpl implements AfdianFinder {
      * @return {@link SponsorEntity}
      */
     @Override
-    public Mono<JsonNode> listSponsor(int pageNumber) {
-        var mono = afdianService.getSponsorList(pageNumber);
-        return DataUtils.changePayTime(mono);
+    public Mono<SponsorEntity> listSponsor(int pageNumber) {
+        return afdianService.getSponsorList(pageNumber).map(this::toSponsorEntity);
     }
 
     /**
@@ -41,9 +45,8 @@ public class AfdianFinderImpl implements AfdianFinder {
      * @return {@link SponsorEntity}
      */
     @Override
-    public Mono<JsonNode> listAllSponsor() {
-        var mono = afdianService.listAllSponsor();
-        return DataUtils.changePayTime(mono);
+    public Mono<SponsorEntity> listAllSponsor() {
+        return afdianService.listAllSponsor().map(this::toSponsorEntity);
     }
 
     /**
@@ -81,8 +84,8 @@ public class AfdianFinderImpl implements AfdianFinder {
      * @return 全部赞助方案、商品、VIP服务
      */
     @Override
-    public Mono<JsonNode> listAllSponsorship() {
-        return afdianService.listAllSponsorship();
+    public Mono<Map<String, Object>> listAllSponsorship() {
+        return afdianService.listAllSponsorship().map(this::toMap);
     }
 
     /**
@@ -91,8 +94,14 @@ public class AfdianFinderImpl implements AfdianFinder {
      * @return 全部赞助方案、商品列表
      */
     @Override
-    public Mono<JsonNode> listPlansAndSales() {
-        return afdianService.listPlansAndSales();
+    public Mono<SaleListEntity> listPlansAndSales() {
+        return afdianService.listPlansAndSales().map(node -> {
+            try {
+                return JSON_MAPPER.treeToValue(node, SaleListEntity.class);
+            } catch (JacksonException e) {
+                throw new RuntimeException("解析赞助方案数据出现异常!", e);
+            }
+        });
     }
 
     /**
@@ -101,7 +110,25 @@ public class AfdianFinderImpl implements AfdianFinder {
      * @return 全部作品集
      */
     @Override
-    public Mono<JsonNode> listAlbum() {
-        return afdianService.listAlbum();
+    public Mono<Map<String, Object>> listAlbum() {
+        return afdianService.listAlbum().map(this::toMap);
+    }
+
+    private SponsorEntity toSponsorEntity(JsonNode node) {
+        try {
+            return JSON_MAPPER.treeToValue(node, SponsorEntity.class);
+        } catch (JacksonException e) {
+            throw new RuntimeException("解析赞助者数据出现异常!", e);
+        }
+    }
+
+    private Map<String, Object> toMap(JsonNode node) {
+        try {
+            return JSON_MAPPER.treeToValue(node,
+                new tools.jackson.core.type.TypeReference<Map<String, Object>>() {
+                });
+        } catch (JacksonException e) {
+            throw new RuntimeException("解析数据出现异常!", e);
+        }
     }
 }
