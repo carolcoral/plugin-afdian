@@ -113,9 +113,14 @@ public class AfdianServiceImpl implements AfdianService {
                 SponsorEntity sponsorEntity =
                     JSON_MAPPER.treeToValue(result, SponsorEntity.class);
                 var data = sponsorEntity.getData();
+                if (data == null) {
+                    return;
+                }
                 int totalPage = data.getTotal_page();
                 List<SponsorEntity.SponsorJsonData> dataList = data.getList();
-                sources.addAll(dataList);
+                if (dataList != null) {
+                    sources.addAll(dataList);
+                }
                 for (int i = 2; i <= totalPage; i++) {
                     var sponsorList = getSponsorList(i);
                     sponsorList.doOnSuccess(jsonNode -> {

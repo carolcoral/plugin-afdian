@@ -16,6 +16,9 @@ public class DataUtils {
         return mono.map(res -> {
             try {
                 var sponsorEntity = JSON_MAPPER.treeToValue(res, SponsorEntity.class);
+                if (sponsorEntity.getData() == null || sponsorEntity.getData().getList() == null) {
+                    return res;
+                }
                 var dataList = sponsorEntity.getData().getList();
                 for (SponsorEntity.SponsorJsonData sponsorJsonData : dataList) {
                     var firstPayTime = sponsorJsonData.getFirst_pay_time();
