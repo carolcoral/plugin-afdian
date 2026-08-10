@@ -36,7 +36,7 @@ public class AfdianRouter {
         // 准备需要提供给模板的默认数据
         var model = new HashMap<String, Object>();
         defaultModel(model);
-        return this.settingFetcher.get(THEME_SETTING).flatMap(setting -> {
+        return this.settingFetcher.getSettingValue(THEME_SETTING).flatMap(setting -> {
             String themeStyle = setting.get("themeStyle").asText();
             if (StringUtils.isEmpty(themeStyle)) {
                 themeStyle = "afdian";
@@ -50,21 +50,21 @@ public class AfdianRouter {
 
     private void defaultModel(HashMap<String, Object> model) {
         Mono<String> sponsorUrl =
-            this.settingFetcher.get(THEME_SETTING).map(setting ->
+            this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                 setting.get("sponsorUrl").asText()
             ).defaultIfEmpty("https://afdian.com/a/carolcoral");
         model.put("sponsorUrl", sponsorUrl);
         Mono<Double> sponsorNumber =
-            this.settingFetcher.get(THEME_SETTING).map(setting ->
+            this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                 setting.get("sponsorNumber").asDouble()
             ).defaultIfEmpty(66.00);
         model.put("sponsorNumber", sponsorNumber);
-        Mono<String> rewardTopTitle = this.settingFetcher.get(THEME_SETTING).map(setting ->
+        Mono<String> rewardTopTitle = this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
             setting.get("rewardTopTitle").asText()
         ).defaultIfEmpty("感谢我的赞赏者们");
         model.put("rewardTopTitle", rewardTopTitle);
         Mono<String> baseUrl =
-            this.settingFetcher.get(BASIC).map(setting ->
+            this.settingFetcher.getSettingValue(BASIC).map(setting ->
                 setting.get("baseUrl").asText()
             ).defaultIfEmpty("https://afdian.com");
         model.put("baseUrl", baseUrl);
@@ -75,26 +75,26 @@ public class AfdianRouter {
         switch (theme) {
             case "afdian2":
                 Mono<String> rewardTopImgUrl =
-                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                    this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                         setting.get("rewardTopImgUrl").asText()
                     ).defaultIfEmpty(
                         "https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg");
                 model.put("rewardTopImgUrl", rewardTopImgUrl);
                 Mono<Boolean> enableRewardRoll =
-                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                    this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                         setting.get("enableRewardRoll").asBoolean()
                     ).defaultIfEmpty(false);
                 model.put("enableRewardRoll", enableRewardRoll);
                 break;
             case "afdian3":
                 Mono<String> theme3ImgUrl =
-                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                    this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                         setting.get("theme3ImgUrl").asText()
                     ).defaultIfEmpty(
                         "https://youimg1.c-ctrip.com/target/100m1b000001bj6if96CC.jpg");
                 model.put("theme3ImgUrl", theme3ImgUrl);
                 Mono<Boolean> enableTheme3Img =
-                    this.settingFetcher.get(THEME_SETTING).map(setting ->
+                    this.settingFetcher.getSettingValue(THEME_SETTING).map(setting ->
                         setting.get("enableTheme3Img").asBoolean()
                     ).defaultIfEmpty(false);
                 model.put("enableTheme3Img", enableTheme3Img);
@@ -115,7 +115,7 @@ public class AfdianRouter {
         // 准备需要提供给模板的默认数据
         var model = new HashMap<String, Object>();
         defaultModel(model);
-        return this.settingFetcher.get(SHOP).flatMap(setting -> {
+        return this.settingFetcher.getSettingValue(SHOP).flatMap(setting -> {
             String themeStyle = setting.get("themeStyle").asText();
             if (StringUtils.isEmpty(themeStyle)) {
                 themeStyle = "shop1 ";
@@ -131,12 +131,12 @@ public class AfdianRouter {
         switch (theme) {
             case "shop1":
                 Mono<String> basicTitle =
-                    this.settingFetcher.get(SHOP).map(setting ->
+                    this.settingFetcher.getSettingValue(SHOP).map(setting ->
                         setting.get("basic_title").asText()
                     ).defaultIfEmpty("爱发电商品展示");
                 model.put("afdian_shop_basic_title", basicTitle);
                 Mono<String> secondTitle =
-                    this.settingFetcher.get(SHOP).map(setting ->
+                    this.settingFetcher.getSettingValue(SHOP).map(setting ->
                         setting.get("second_title").asText()
                     ).defaultIfEmpty("services");
                 model.put("afdian_shop_second_title", secondTitle);
