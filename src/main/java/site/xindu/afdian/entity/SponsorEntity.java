@@ -1,10 +1,12 @@
 package site.xindu.afdian.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SponsorEntity {
 
     private int ec;
@@ -14,6 +16,7 @@ public class SponsorEntity {
     private SponsorData data;
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class SponsorData{
         private int total_count;
         private int total_page;
@@ -21,6 +24,7 @@ public class SponsorEntity {
     }
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class SponsorJsonData{
         private List<Object> sponsor_plans;
         private Double all_sum_amount;
@@ -33,6 +37,7 @@ public class SponsorEntity {
     }
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class User{
         private String user_id;
         private String name;
